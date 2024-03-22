@@ -283,3 +283,11 @@
 
         return mysqli_fetch_assoc($result);
     }
+
+    function checkExistEmail($connect, $email)
+    {
+        $sql = "SELECT * FROM users WHERE email = '{$email}'";
+        $result = mysqli_query($connect, $sql);
+
+        return mysqli_fetch_assoc($result);
+    }

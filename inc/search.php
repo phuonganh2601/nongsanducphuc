@@ -2,7 +2,7 @@
     $file = basename(getCurrentUrl(), '.php');
 ?>
 <!-- Hero Section Begin -->
-<section class="hero <?= ($file !== 'index') ? 'hero-normal' : '' ?>">
+<section class="hero <?= ($file !== 'index' && $file !== 'webbannongsan') ? 'hero-normal' : '' ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <?php if ($file === 'index'): ?>
+                <?php if ($file === 'index' || $file === 'webbannongsan'): ?>
                     <div class="hero__item set-bg" data-setbg="assets/client/img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>TRÁI CÂY TƯƠI</span>

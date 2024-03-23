@@ -30,7 +30,7 @@
                             <td><?= $row['category_name'] ?></td>
                             <td><img src="../../assets/admin/img/products/<?= $row['image'] ?>" width=60px ></td>
                             <td><?= $row['name'] ?></td>
-                            <td><?= number_format($row['price'],-3,',',',') ?> VND</td>
+                            <td><?= number_format($row['price'],-3,',',',') ?> VND / <?= $row['unit'] ?></td>
                             <td><?= $row['qty'] ?></td>
                             <td><?= $row['qty'] > 0 ? 'Còn hàng' : 'Hết hàng' ?></td>
                             <td>

@@ -4,14 +4,15 @@
         $name = $_POST['name'];
         $qty = $_POST['qty'];
         $price = $_POST['price'];
+        $unit = $_POST['unit'];
         $categoryId = $_POST['category_id'];
         $description = htmlentities($_POST['description']);
         $fileImg = $_FILES['image'];
         $img_name = date('Y_m_d_H_i_s') . '_' . $fileImg['name'];
         $tmp_name = $fileImg['tmp_name'];
         if (move_uploaded_file($tmp_name,  str_replace('\\', '/', $baseFolder) . '/assets/admin/img/products/' . $img_name)) {
-            $sql = "INSERT INTO products(name, qty, price, category_id, description, image) 
-            VALUES ('{$name}', {$qty}, {$price}, {$categoryId}, '{$description}', '{$img_name}')";
+            $sql = "INSERT INTO products(name, qty, price, category_id, description, image, unit) 
+            VALUES ('{$name}', {$qty}, {$price}, {$categoryId}, '{$description}', '{$img_name}', '{$unit}')";
             $status = mysqli_query($connect, $sql);
             if ($status) {
                 echo '<script>
@@ -37,6 +38,10 @@
             <div class="form-group">
                 <label for="price">Giá tiền: <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" placeholder="Nhập giá tiền" id="price" name="price" min=1 required>
+            </div>
+            <div class="form-group">
+                <label for="unit">Đơn vị: <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Nhập đơn vị" id="unit" name="unit" required>
             </div>
             <div class="form-group">
                 <label for="qty">Số lượng: <span class="text-danger">*</span></label>

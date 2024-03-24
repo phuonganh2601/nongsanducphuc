@@ -1,6 +1,6 @@
 <?php 
-    include './layouts/header.php';
-    include './inc/search.php';
+    include 'layouts/header.php';
+    include 'inc/search.php';
 ?>
 <h3 class="text-center mt-3 text-uppercase" style="font-weight: bold;">DANH SÁCH SẢN PHẨM</h3>
 
@@ -60,4 +60,4 @@
     </div>
 </section>
 <!-- Product Section End -->
-<?php include './layouts/footer.php'; ?>
+<?php include 'layouts/footer.php'; ?>

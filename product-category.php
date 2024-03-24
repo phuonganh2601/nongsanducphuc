@@ -1,6 +1,6 @@
 <?php 
-    include './layouts/header.php'; 
-    include './inc/search.php';
+    include 'layouts/header.php'; 
+    include 'inc/search.php';
 ?>
 <h3 class="text-center mt-3 text-uppercase" style="font-weight: bold;">DANH MỤC <?= getCategoryById($connect, $_GET['id'])['name'] ?></h3>
 <!-- Product Section Begin -->
@@ -41,4 +41,4 @@
     </div>
 </section>
 <!-- Product Section End -->
-<?php include './layouts/footer.php'; ?>
+<?php include 'layouts/footer.php'; ?>

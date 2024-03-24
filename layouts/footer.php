@@ -84,6 +84,9 @@ Copyright ©<script>document.write(new Date().getFullYear());</script> | Bản q
     <script src="assets/client/js/mixitup.min.js"></script>
     <script src="assets/client/js/owl.carousel.min.js"></script>
     <script src="assets/client/js/main.js"></script>
+    <script src="assets/client/js/add-to-cart.js"></script>
+    <script src="assets/client/js/filter.js"></script>
+    <script src="assets/client/js/sort.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php 
-    include './layouts/header.php';
-    include './inc/search.php';
+    include 'layouts/header.php';
+    include 'inc/search.php';
     $product = getProductById($connect, $_GET['id']);
 ?>
 <!-- Product Details Section Begin -->
@@ -46,4 +46,4 @@
     </div>
 </section>
 <!-- Product Details Section End -->
-<?php include './layouts/footer.php'; ?>
+<?php include 'layouts/footer.php'; ?>

@@ -40,6 +40,9 @@
                                 <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-circle btn-sm">
                                     <i class="fas fa-pen"></i>
                                 </a>
+                                <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-circle btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php $count++; endwhile; ?>

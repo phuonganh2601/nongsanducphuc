@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="product-grid.php" class="btn btn-primary">Tiếp tục mua hàng</a>
+                    <a href="product-grid.php" class="site-btn">Tiếp tục mua hàng</a>
                 </div>
             </div>
             <?php if (isset($_SESSION['shopping_cart']) && count($_SESSION['shopping_cart']) > 0): ?>

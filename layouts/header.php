@@ -9,14 +9,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="description" content="Đức Phúc - Nông sản sạch">
+    <meta name="keywords" content="Duc Phuc, nong san, nong san sach, nong san Duc Phuc">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani</title>
+    <title>Đức Phúc - Nông sản sạch</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
     <!-- Font Awaesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -80,7 +83,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                                <li><i class="fa fa-envelope"></i> huyhoang.sdv@gmail.com</li>
                             </ul>
                         </div>
                     </div>

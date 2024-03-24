@@ -52,11 +52,11 @@
         <script src="../../assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
         <!-- Page level custom scripts -->
-        <script src="../../assets/admin/js/datatables-demo.js"></script>
+        <script src="../../assets/admin/js/datatables.js"></script>
 
         <script src="../../assets/admin/ckeditor/ckeditor.js"></script>
         <script src="../../assets/admin/js/image.js"></script>
-        <script>CKEDITOR.replace('description')</script>
+        <script>if (document.getElementById('description')) CKEDITOR.replace('description');</script>
     </body>
 
     </html>

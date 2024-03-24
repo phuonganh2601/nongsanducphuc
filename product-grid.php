@@ -13,10 +13,10 @@
                     <div class="sidebar__item">
                         <h4>Lọc theo danh mục</h4>
                         <ul>
-                            <li style="cursor: pointer" onMouseOver="this.style.color='#5cb3ff'"
+                            <li style="cursor: pointer" onMouseOver="this.style.color='#008747'"
                                 onMouseOut="this.style.color='black'" onclick="filterProductByCategory(0);" class="mb-3 brand_item">Mặc định</li>
                             <?php foreach (getCategories($connect) as $category): ?>
-                                <li style="cursor: pointer" onMouseOver="this.style.color='#5cb3ff'"
+                                <li style="cursor: pointer" onMouseOver="this.style.color='#008747'"
                                 onMouseOut="this.style.color='black'" onclick="filterProductByCategory(<?= $category['id'] ?>);" class="mb-3 brand_item"><?= $category['name'] ?></li>
                             <?php endforeach; ?>
                         </ul>

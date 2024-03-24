@@ -9,8 +9,8 @@
                     </div>
                     <ul>
                         <li>Địa chỉ: Hà Nội</li>
-                        <li>Phone: 0123 456 789</li>
-                        <li>Email: ogani@gmail.com</li>
+                        <li>SĐT: 0363 960 410</li>
+                        <li>Email: huyhoang.sdv@gmail.com</li>
                     </ul>
                 </div>
                 <p style="font-weight: bold;color:black;">Chứng nhận bởi</p>
@@ -40,10 +40,10 @@
                     <h6 class="mt-3">Hợp tác và liên kết</h6>
                     <ul>
                         <li><a href="#">Quy chế hoạt động</a></li>
-                        <li><a href="#">Bán hàng cùng Ogani</a></li>
+                        <li><a href="#">Bán hàng cùng Đức Phúc</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#">Trở thành cổ đông Ogani</a></li>
+                        <li><a href="#">Trở thành cổ đông Đức Phúc</a></li>
                         <li><a href="#">Lợi ích</a></li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
             <div class="col-lg-12">
                 <div class="footer__copyright">
                     <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright ©<script>document.write(new Date().getFullYear());</script> | Bản quyền thuộc về Ogani
+Copyright © <script>document.write(new Date().getFullYear());</script> | Bản quyền thuộc về Ogani
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                 </div>
             </div>

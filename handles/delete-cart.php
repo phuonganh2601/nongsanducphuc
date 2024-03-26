@@ -6,7 +6,3 @@
             unset($_SESSION['shopping_cart'][$key]);
         }
     }
-
-    echo '<script>
-        window.location.href = "../shopping-cart.php";
-    </script>';

@@ -33,9 +33,9 @@
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <a href="handles/decrease-cart.php?id=<?= $row['item_id'] ?>"><span class="dec qtybtn">-</span></a>
+                                                    <span class="dec qtybtn" data-id="<?= $row['item_id'] ?>">-</span>
                                                     <input type="text" value="<?= $row['item_qty'] ?>" readonly>
-                                                    <a href="handles/increase-cart.php?id=<?= $row['item_id'] ?>"><span class="inc qtybtn">+</span></a>
+                                                    <span class="inc qtybtn" data-id="<?= $row['item_id'] ?>">+</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -43,7 +43,7 @@
                                             <?= number_format($row['item_price'] * $row['item_qty'],-3,',',',') ?> VND
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            <a href="handles/delete-cart.php?id=<?= $row['item_id'] ?>" onclick="return confirm('Bạn có muốn xóa sản phẩm này ?')"><span class="icon_close"></span></a>
+                                            <span class="icon_close del-item" data-id="<?= $row['item_id'] ?>"></span>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -70,7 +70,7 @@
                     <div class="shoping__checkout">
                         <h5>Giỏ hàng</h5>
                         <ul>
-                            <li>Tổng tiền <span>
+                            <li>Tổng tiền <span id="total_price">
                                 <?= 
                                     number_format(array_reduce($_SESSION['shopping_cart'], 
                                     function($total, $item) {

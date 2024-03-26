@@ -6,7 +6,3 @@
             $_SESSION['shopping_cart'][$key]['item_qty'] += 1;
         }
     }
-    
-    echo '<script>
-        window.location.href = "../shopping-cart.php";
-    </script>';

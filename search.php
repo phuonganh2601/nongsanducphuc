@@ -18,8 +18,9 @@
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <a href="product-detail.php?id=<?= $product['id'] ?>" style="display: block; background-size: cover; background-position: center; width: 100%; height: 100%;"></a>
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

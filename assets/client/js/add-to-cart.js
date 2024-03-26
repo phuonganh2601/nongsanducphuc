@@ -1,3 +1,15 @@
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
 function addToCart(id) {
     $.ajax({
         url: "handles/add-to-cart.php",
@@ -10,9 +22,9 @@ function addToCart(id) {
             if (response.status == 200) {
                 $("#qty_cart").html(response.qty);
                 $("#price_cart").html(numberFormat(response.price) + " VND");
-                swal({ title: "Thêm vào giỏ hàng thành công", type: "success", confirmButtonColor: "#008747" });
+                Toast.fire({ title: "Thêm vào giỏ hàng thành công", type: "success" });
             } else {
-                swal({ title: response.msg, type: "error" });
+                Toast.fire({ title: response.msg, type: "error" });
             }
         },
     });

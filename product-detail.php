@@ -19,7 +19,7 @@
                 <div class="product__details__text">
                     <h3><?= $product['name'] ?></h3>
                     <div class="product__details__price text-danger"><?= number_format($product['price'],-3,',',',') ?> VND / <?= $product['unit'] ?></div>
-                    <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);" class="primary-btn">THÊM GIỎ HÀNG</a>
+                    <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);" class="site-btn">THÊM VÀO GIỎ HÀNG</a>
                     <ul>
                         <li><b>Danh mục</b> <span><?= $product['category_name'] ?></span></li>
                         <li><b>Trạng thái</b> <span><?= $product['qty'] > 0 ? 'Còn hàng' : 'Hết hàng' ?></span></li>

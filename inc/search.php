@@ -1,8 +1,8 @@
 <?php
-    $file = basename(getCurrentUrl(), '.php');
+    $file = basename($_SERVER['PHP_SELF'], '.php');
 ?>
 <!-- Hero Section Begin -->
-<section class="hero <?= ($file !== 'index' && $file !== 'webbannongsan') ? 'hero-normal' : '' ?>">
+<section class="hero<?= ($file !== 'index') ? ' hero-normal' : '' ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">

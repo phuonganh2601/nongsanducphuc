@@ -29,8 +29,9 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix <?= str_replace(' ', '', $product['category_name']) ?>">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">
+                            <a href="product-detail.php?id=<?= $product['id'] ?>" style="display: block; background-size: cover; background-position: center; width: 100%; height: 100%;"></a>
                             <ul class="featured__item__pic__hover">
-                                <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

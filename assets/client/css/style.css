@@ -766,6 +766,7 @@ a.site-btn:hover {
 .categories__item {
 	height: 270px;
 	position: relative;
+	border: 1px solid #ebebeb;
 }
 
 .categories__item h5 {
@@ -786,6 +787,7 @@ a.site-btn:hover {
 	padding: 12px 0 10px;
 	background: #ffffff;
 	display: block;
+	border: 1px solid #ebebeb;
 }
 
 .categories__slider .col-lg-3 {
@@ -859,21 +861,18 @@ a.site-btn:hover {
 	margin-bottom: 50px;
 }
 
-.featured__item:hover .featured__item__pic .featured__item__pic__hover {
-	bottom: 20px;
-}
-
 .featured__item__pic {
 	height: 270px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
+	border: 1px solid #ebebeb;
 }
 
 .featured__item__pic__hover {
 	position: absolute;
 	left: 0;
-	bottom: -50px;
+	bottom: 0px;
 	width: 100%;
 	text-align: center;
 	-webkit-transition: all, 0.5s;
@@ -887,6 +886,7 @@ a.site-btn:hover {
 	list-style: none;
 	display: inline-block;
 	margin-right: 6px;
+	width: 100%;
 }
 
 .featured__item__pic__hover li:last-child {
@@ -896,10 +896,10 @@ a.site-btn:hover {
 .featured__item__pic__hover li:hover a {
 	background: #008747;
 	border-color: #008747;
+	color: #ffffff;
 }
 
 .featured__item__pic__hover li:hover a i {
-	color: #ffffff;
 	transform: rotate(360deg);
 }
 
@@ -907,13 +907,10 @@ a.site-btn:hover {
 	font-size: 16px;
 	color: #1c1c1c;
 	height: 40px;
-	width: 40px;
 	line-height: 40px;
 	text-align: center;
-	border: 1px solid #ebebeb;
 	background: #ffffff;
 	display: block;
-	border-radius: 50%;
 	-webkit-transition: all, 0.5s;
 	-moz-transition: all, 0.5s;
 	-ms-transition: all, 0.5s;
@@ -933,7 +930,9 @@ a.site-btn:hover {
 
 .featured__item__text {
 	text-align: center;
-	padding-top: 15px;
+	padding: 15px 0;
+	border: 1px solid #ebebeb;
+	border-top: 0;
 }
 
 .featured__item__text h6 {
@@ -1282,10 +1281,6 @@ a.site-btn:hover {
 	width: 100%;
 }
 
-.product__discount__item:hover .product__discount__item__pic .product__item__pic__hover {
-	bottom: 20px;
-}
-
 .product__discount__item__pic {
 	height: 270px;
 	position: relative;
@@ -1309,7 +1304,7 @@ a.site-btn:hover {
 .product__item__pic__hover {
 	position: absolute;
 	left: 0;
-	bottom: -50px;
+	bottom: 0px;
 	width: 100%;
 	text-align: center;
 	-webkit-transition: all, 0.5s;
@@ -1332,10 +1327,10 @@ a.site-btn:hover {
 .product__item__pic__hover li:hover a {
 	background: #008747;
 	border-color: #008747;
+	color: #ffffff;
 }
 
 .product__item__pic__hover li:hover a i {
-	color: #ffffff;
 	transform: rotate(360deg);
 }
 
@@ -1343,13 +1338,11 @@ a.site-btn:hover {
 	font-size: 16px;
 	color: #1c1c1c;
 	height: 40px;
-	width: 40px;
 	line-height: 40px;
 	text-align: center;
 	border: 1px solid #ebebeb;
 	background: #ffffff;
 	display: block;
-	border-radius: 50%;
 	-webkit-transition: all, 0.5s;
 	-moz-transition: all, 0.5s;
 	-ms-transition: all, 0.5s;
@@ -1535,20 +1528,17 @@ a.site-btn:hover {
 	margin-bottom: 50px;
 }
 
-.product__item:hover .product__item__pic .product__item__pic__hover {
-	bottom: 20px;
-}
-
 .product__item__pic {
 	height: 270px;
 	position: relative;
 	overflow: hidden;
+	border: 1px solid #ebebeb;
 }
 
 .product__item__pic__hover {
 	position: absolute;
 	left: 0;
-	bottom: -50px;
+	bottom: 0px;
 	width: 100%;
 	text-align: center;
 	-webkit-transition: all, 0.5s;
@@ -1562,6 +1552,7 @@ a.site-btn:hover {
 	list-style: none;
 	display: inline-block;
 	margin-right: 6px;
+	width: 100%;
 }
 
 .product__item__pic__hover li:last-child {
@@ -1571,10 +1562,10 @@ a.site-btn:hover {
 .product__item__pic__hover li:hover a {
 	background: #008747;
 	border-color: #008747;
+	color: #ffffff;
 }
 
 .product__item__pic__hover li:hover a i {
-	color: #ffffff;
 	transform: rotate(360deg);
 }
 
@@ -1582,13 +1573,11 @@ a.site-btn:hover {
 	font-size: 16px;
 	color: #1c1c1c;
 	height: 40px;
-	width: 40px;
 	line-height: 40px;
 	text-align: center;
 	border: 1px solid #ebebeb;
 	background: #ffffff;
 	display: block;
-	border-radius: 50%;
 	-webkit-transition: all, 0.5s;
 	-moz-transition: all, 0.5s;
 	-ms-transition: all, 0.5s;
@@ -1608,7 +1597,9 @@ a.site-btn:hover {
 
 .product__item__text {
 	text-align: center;
-	padding-top: 15px;
+	padding: 15px 0;
+	border: 1px solid #ebebeb;
+	border-top: 0;
 }
 
 .product__item__text h6 {
@@ -2948,6 +2939,9 @@ a.site-btn:hover {
 /* Tablet Device = 768px */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+	.header__logo img {
+		width: 95%;
+	}
 	.hero__categories {
 		margin-bottom: 30px;
 	}
@@ -2983,12 +2977,12 @@ a.site-btn:hover {
 	.humberger__open {
 		display: block;
 		font-size: 22px;
-		color: #1c1c1c;
+		color: #008747;
 		height: 35px;
 		width: 35px;
 		line-height: 33px;
 		text-align: center;
-		border: 1px solid #1c1c1c;
+		border: 1px solid #008747;
 		cursor: pointer;
 		position: absolute;
 		right: 15px;
@@ -3171,6 +3165,9 @@ a.site-btn:hover {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+	.header__logo img {
+		width: 90%;
+	}
 	.hero__categories {
 		margin-bottom: 30px;
 	}
@@ -3241,12 +3238,12 @@ a.site-btn:hover {
 	.humberger__open {
 		display: block;
 		font-size: 22px;
-		color: #1c1c1c;
+		color: #008747;
 		height: 35px;
 		width: 35px;
 		line-height: 33px;
 		text-align: center;
-		border: 1px solid #1c1c1c;
+		border: 1px solid #008747;
 		cursor: pointer;
 		position: absolute;
 		right: 15px;

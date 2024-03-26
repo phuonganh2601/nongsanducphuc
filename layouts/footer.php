@@ -36,17 +36,6 @@
                         <li><a href="#">Chính sách hàng nhập khẩu</a></li>
                     </ul>
                 </div>
-                <div class="footer__widget">
-                    <h6 class="mt-3">Hợp tác và liên kết</h6>
-                    <ul>
-                        <li><a href="#">Quy chế hoạt động</a></li>
-                        <li><a href="#">Bán hàng cùng Đức Phúc</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Trở thành cổ đông Đức Phúc</a></li>
-                        <li><a href="#">Lợi ích</a></li>
-                    </ul>
-                </div>
             </div>
             <div class="col-lg-3 col-md-12">
                 <div class="footer__widget">

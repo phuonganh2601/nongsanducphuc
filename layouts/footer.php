@@ -76,6 +76,23 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
     <script src="assets/client/js/add-to-cart.js"></script>
     <script src="assets/client/js/filter.js"></script>
     <script src="assets/client/js/sort.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#orderTable").DataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/2.0.3/i18n/vi.json',
+                }
+            });
+
+            $("#orderDetailTable").DataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/2.0.3/i18n/vi.json',
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

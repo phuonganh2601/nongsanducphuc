@@ -165,6 +165,10 @@
                 <div class="progress mb-4">
                     <div class="progress-bar bg-warning" role="progressbar" style="width: <?= @getOrderConfirm($connect)['count_order'] ?>%"></div>
                 </div>
+                <h4 class="small font-weight-bold">Đang giao hàng <span class="float-right"><?= @getOrderShip($connect)['count_order'] ?></span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-secondary" role="progressbar" style="width: <?= @getOrderShip($connect)['count_order'] ?>%"></div>
+                </div>
                 <h4 class="small font-weight-bold">Hoàn thành <span class="float-right"><?= @getOrderDone($connect)['count_order'] ?></span></h4>
                 <div class="progress mb-4">
                     <div class="progress-bar bg-success" role="progressbar" style="width: <?= @getOrderDone($connect)['count_order'] ?>%"></div>

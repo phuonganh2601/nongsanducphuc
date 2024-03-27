@@ -98,7 +98,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	color: #0260c5;
 }
 
 ul,
@@ -2117,7 +2117,7 @@ a.site-btn:hover {
 	color: #dd2222;
 }
 
-.checkout__input input {
+.checkout__input input, .checkout__input select {
 	width: 100%;
 	height: 46px;
 	border: 1px solid #ebebeb;

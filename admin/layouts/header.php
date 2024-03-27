@@ -1,6 +1,7 @@
 <?php 
     include '../../inc/connect.php';
     include '../../helpers/helper.php';
+    date_default_timezone_set("Asia/Ho_Chi_Minh");
     session_start();
     $baseFolder = dirname(__FILE__, 3);
     if (!isset($_SESSION['admin'])) {

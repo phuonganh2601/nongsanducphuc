@@ -8,19 +8,17 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <?php if ($order['status'] != 2 && $order['status'] != 3): ?>
+        <?php if (!in_array($order['status'], [3, 4])): ?>
             <form method="POST" action="update-status.php" style="margin-bottom: 3rem;">
                 <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                 <select name="status" class="status" style="padding:0.4rem 0;outline:none;">
                     <?php if ($order['status'] == 0): ?>
-                        <option value="0" selected>Chờ xác nhận</option>
                         <option value="1">Xác nhận</option>
-                        <option value="3">Hủy đơn hàng</option>
+                        <option value="4">Hủy đơn hàng</option>
                     <?php elseif ($order['status'] == 1): ?>
-                        <option value="1" selected>Xác nhận</option>
-                        <option value="2">Hoàn thành</option>
-                    <?php else: ?>
-                        <option value="3" selected>Hủy đơn hàng</option>
+                        <option value="2">Đang giao hàng</option>
+                    <?php elseif ($order['status'] == 2): ?>
+                        <option value="3">Hoàn thành</option>
                     <?php endif; ?>
                 </select>
                 <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>

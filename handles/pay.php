@@ -1,7 +1,10 @@
 <?php
     include '../inc/connect.php';
+    include '../helpers/helper.php';
     session_start();
-    $orderId = 'order_' . random_int(100000, 999999);
+    do {
+        $orderId = str_pad(random_int(1, 999999), 6, '0', STR_PAD_LEFT);
+    } while (checkExistOrderId($connect, $orderId));
     $name = $_POST['name'];
     $tel = $_POST['tel'];
     $type = $_POST['type'];

@@ -54,7 +54,7 @@
 
             <div class="row justify-content-md-center">
                 <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Họ tên" style="margin-bottom: 10px;" name="name" required>
+                    <input type="text" placeholder="Họ và tên" style="margin-bottom: 10px;" name="name" required>
                 </div>
             </div>
             <div class="row justify-content-md-center">

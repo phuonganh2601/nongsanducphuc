@@ -21,12 +21,12 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="checkout__input">
-                            <p>Họ tên <span class="text-danger">*</span></p>
-                            <input type="text" name="name" class="checkout__input__add" value="<?= $_SESSION['user']['name'] ?>" required>
+                            <p>Họ và tên <span class="text-danger">*</span></p>
+                            <input type="text" placeholder="Nhập họ và tên" name="name" class="checkout__input__add" value="<?= $_SESSION['user']['name'] ?>" required>
                         </div>
                         <div class="checkout__input">
                             <p>Số điện thoại <span class="text-danger">*</span></p>
-                            <input type="tel" name="tel" class="checkout__input__add" value="<?= $_SESSION['user']['phone'] ?>" required>
+                            <input type="tel" placeholder="Nhập số điện thoại" name="tel" class="checkout__input__add" value="<?= $_SESSION['user']['phone'] ?>" required>
                         </div>
                         <div class="checkout__input">
                             <p>Địa chỉ nhận hàng <span class="text-danger">*</span></p>
@@ -36,8 +36,8 @@
                             <p>Hình thức thanh toán <span class="text-danger">*</span></p>
                             <select class="checkout__input__add" name="type" required>
                                 <option value="">Vui lòng chọn hình thức thanh toán</option>
-                                <option value="0">Thanh toán Cod</option>
-                                <option value="1">Chuyển khoản</option>
+                                <option value="0">Thanh toán khi nhận hàng</option>
+                                <option value="1">Chuyển khoản qua ngân hàng</option>
                             </select>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                             <ul>
                                 <?php foreach ($_SESSION['shopping_cart'] as $row): ?>
-                                    <li><?= $row['item_name'] ?> <span><?= number_format($row['item_price'] * $row['item_qty'] ,-3,',',',') ?> VND</span></li>
+                                    <li><?= $row['item_name'] . " x " . $row['item_qty'] ?> <span><?= number_format($row['item_price'] * $row['item_qty'] ,-3,',',',') ?> VND</span></li>
                                 <?php endforeach; ?>
                             </ul>
                             <div class="checkout__order__total">Thành tiền <span class="total-cart">

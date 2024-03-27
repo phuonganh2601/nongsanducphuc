@@ -17,9 +17,7 @@
                         <th>Số điện thoại</th>
                         <th>Tổng tiền</th>
                         <th>Ngày đặt hàng</th>
-                        <th>Địa chỉ nhận hàng</th>
                         <th>Trạng thái</th>
-                        <th>Hình thức thanh toán</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -30,21 +28,18 @@
                         <th>Số điện thoại</th>
                         <th>Tổng tiền</th>
                         <th>Ngày đặt hàng</th>
-                        <th>Địa chỉ nhận hàng</th>
                         <th>Trạng thái</th>
-                        <th>Hình thức thanh toán</th>
                         <th>Chức năng</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <?php while($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td><?= $row['id'] ?></td>
+                            <td>#<?= $row['id'] ?></td>
                             <td><?= $row['name'] ?></td>
                             <td><?= $row['tel'] ?></td>
                             <td><?= number_format($row['total'], -3, ',', ',') ?> VND</td>
                             <td><?= date('d/m/Y H:i:s', strtotime($row['created_at'])) ?></td>
-                            <td><?= $row['address'] ?></td>
                             <td>
                                 <?php
                                     switch ($row['status']) {
@@ -66,7 +61,6 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= $row['type'] == 0 ? 'Thanh toán Cod' : 'Chuyển khoản' ?></td>
                             <td>
                                 <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">
                                     Chi tiết

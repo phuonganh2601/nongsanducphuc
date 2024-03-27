@@ -3,13 +3,13 @@
     $order = getOrderById($connect, $_GET['id']);
     $orderDetails = getOrderDetail($connect, $_GET['id']);
 ?>
-<h1 class="h3 mb-2 text-gray-800">Đơn hàng <?= $_GET['id'] ?></h1>
+<h1 class="h3 mb-2 text-gray-800">Đơn hàng #<?= $_GET['id'] ?></h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-body">
         <?php if (!in_array($order['status'], [3, 4])): ?>
-            <form method="POST" action="update-status.php" style="margin-bottom: 3rem;">
+            <form method="POST" action="update-status.php">
                 <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                 <select name="status" class="status" style="padding:0.4rem 0;outline:none;">
                     <?php if ($order['status'] == 0): ?>
@@ -24,7 +24,57 @@
                 <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
             </form>
         <?php endif; ?>
-        <div class="table-responsive">
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Thông tin khách hàng</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Mã đơn hàng: </strong><span class="float-right">#<?= $order['id'] ?></span></li>
+                            <li class="list-group-item"><strong>Họ và tên: </strong><span class="float-right"><?= $order['name'] ?></span></li>
+                            <li class="list-group-item"><strong>Số điện thoại: </strong><span class="float-right"><?= $order['tel'] ?></span></li>
+                            <li class="list-group-item"><strong>Địa chỉ nhận hàng: </strong><span class="float-right"><?= $order['address'] ?></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Thông tin thanh toán</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
+                            <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', ',') ?> VND</span></li>
+                            <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
+                            <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
+                                    <?php
+                                    switch ($order['status'])
+                                    {
+                                        case 0:
+                                            echo 'Chờ xác nhận';
+                                            break;
+                                        case 1:
+                                            echo 'Xác nhận';
+                                            break;
+                                        case 2:
+                                            echo 'Đang giao hàng';
+                                            break;
+                                        case 3:
+                                            echo 'Hoàn thành';
+                                            break;
+                                        default:
+                                            echo 'Hủy';
+                                            break;
+                                    }
+                                    ?>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive mt-2">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>

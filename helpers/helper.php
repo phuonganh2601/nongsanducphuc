@@ -122,6 +122,16 @@
         return $products;
     }
 
+    function checkExistOrderId($connect, $id)
+    {
+        $sql = "SELECT 1 FROM orders WHERE id = '{$id}' LIMIT 1";
+        $result = mysqli_query($connect, $sql);
+        $exists = mysqli_num_rows($result) > 0;
+        mysqli_free_result($result);
+        return $exists;
+    }
+
+
     function getCountUser($connect)
     {
         $sql = "SELECT COUNT(*) count_user FROM users";

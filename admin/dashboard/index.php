@@ -24,7 +24,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Doanh thu hôm nay</div>
-                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueToday($connect)['total'] ?? 0,-3,',',',') ?> VND</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueToday($connect)['total'] ?? 0,-3,',','.') ?> VND</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Doanh thu tuần này</div>
-                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentWeek($connect)['total'] ?? 0,-3,',',',') ?> VND</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentWeek($connect)['total'] ?? 0,-3,',','.') ?> VND</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -56,7 +56,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Doanh thu tháng <?= date('n') ?></div>
-                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentMonth($connect)['total'] ?? 0,-3,',',',') ?> VND</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentMonth($connect)['total'] ?? 0,-3,',','.') ?> VND</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Doanh thu năm <?= date('Y') ?></div>
-                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentYear($connect)['total'] ?? 0,-3,',',',') ?> VND</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= number_format(@getRevenueCurrentYear($connect)['total'] ?? 0,-3,',','.') ?> VND</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

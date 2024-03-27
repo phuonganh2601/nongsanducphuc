@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <th>Giá tiền</th>
-                    <td><?= number_format($product['price'],-3,',',',') ?> VND / <?= $product['unit'] ?></td>
+                    <td><?= number_format($product['price'],-3,',','.') ?> VND / <?= $product['unit'] ?></td>
                 </tr>
                 <tr>
                     <th>Số lượng</th>

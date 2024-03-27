@@ -327,11 +327,11 @@ button.site-btn:hover {
 
 .header__top__right__language ul {
 	background: #222;
-	width: 150px;
+	width: 200px;
 	text-align: left;
 	padding: 5px 0;
 	position: absolute;
-	left: -40px;
+	left: -15px;
 	top: 43px;
 	z-index: 9;
 	opacity: 0;
@@ -344,13 +344,24 @@ button.site-btn:hover {
 }
 
 .header__top__right__language ul li {
-	list-style: none
+	list-style: none;
+	height: 40px;
+}
+
+.header__top__right__language ul li:hover {
+	background-color: #fff;
+}
+
+.header__top__right__language ul li:hover a {
+	color: #000;
 }
 
 .header__top__right__language ul li a {
 	font-size: 14px;
 	color: #fff;
-	padding: 5px 10px
+	padding: 10px 10px;
+	height: 40px;
+    display: block;
 }
 
 .header__top__right__auth {

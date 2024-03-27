@@ -29,5 +29,10 @@
             mysqli_query($connect, $sql);
         }
         unset($_SESSION['shopping_cart']);
-        header('Location: ../thank.php');
+        if ($type == 1) {
+            $_SESSION['order_id'] = $orderId;
+            header('Location: ../qr-code.php');
+        } else {
+            header('Location: ../thank.php');
+        }
     }

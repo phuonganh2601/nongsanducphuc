@@ -27,7 +27,7 @@
                                     <td>#<?= $order['id'] ?></td>
                                     <td><?= $order['name'] ?></td>
                                     <td><?= $order['tel'] ?></td>
-                                    <td><?= number_format($order['total'],-3,',',',') ?> VND</td>
+                                    <td><?= number_format($order['total'],-3,',','.') ?> VND</td>
                                     <td><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></td>
                                     <td>
                                         <?php

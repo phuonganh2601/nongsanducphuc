@@ -1,6 +1,7 @@
 <?php 
     include 'layouts/header.php'; 
     include 'inc/search.php';
+    unset($_SESSION['order_id']);
 ?>
     <div class="container jumbotron text-center">
         <h2 class="display-3">Cảm ơn quý khách đã mua hàng của chúng tôi!</h2>

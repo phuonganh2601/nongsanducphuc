@@ -28,7 +28,7 @@
                                             <h5><?= $row['item_name'] ?></h5></a>
                                         </td>
                                         <td class="shoping__cart__price">
-                                            <?= number_format($row['item_price'],-3,',',',') ?> VND
+                                            <?= number_format($row['item_price'],-3,',','.') ?> VND
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
@@ -40,7 +40,7 @@
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total">
-                                            <?= number_format($row['item_price'] * $row['item_qty'],-3,',',',') ?> VND
+                                            <?= number_format($row['item_price'] * $row['item_qty'],-3,',','.') ?> VND
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             <span class="icon_close del-item" data-id="<?= $row['item_id'] ?>"></span>
@@ -79,7 +79,7 @@
                                         return $total;
                                     }, 
                                     0
-                                    ),-3,'.','.')
+                                    ),-3,',','.')
                                 ?> VND
                             </span></li>
                         </ul>

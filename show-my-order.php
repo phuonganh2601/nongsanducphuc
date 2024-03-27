@@ -27,7 +27,7 @@
                         <h4 class="card-title text-center">Thông tin thanh toán</h4>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
-                            <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', ',') ?> VND</span></li>
+                            <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', '.') ?> VND</span></li>
                             <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
                             <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
                                     <?php
@@ -52,6 +52,9 @@
                                     ?>
                                 </span>
                             </li>
+                            <?php if ($order['status'] >= 2): ?>
+                            <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -76,8 +79,8 @@
                                 <td><?= $count ?></td>
                                 <td><a href="product-detail.php?id=<?= $orderDetail['product_id'] ?>" style="color: #1c1c1c;"><?= $orderDetail['product']['name'] ?></a></td>
                                 <td><?= $orderDetail['qty'] ?></td>
-                                <td><?= number_format($orderDetail['price'], -3, ',', ',') ?> VND</td>
-                                <td><?= number_format($orderDetail['price'] * $orderDetail['qty'], -3, ',', ',') ?> VND</td>
+                                <td><?= number_format($orderDetail['price'], -3, ',', '.') ?> VND</td>
+                                <td><?= number_format($orderDetail['price'] * $orderDetail['qty'], -3, ',', '.') ?> VND</td>
                             </tr>
                             <?php $count++; endforeach; ?>
                     </tbody>

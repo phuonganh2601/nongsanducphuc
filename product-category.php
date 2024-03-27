@@ -24,7 +24,7 @@
                                     <div class="product__item__text">
                                         <h6><a href="product-detail.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h6>
                                         <div class="col-md-12">
-                                            <h5 class="text-danger"><?= number_format($product['price'],-3,',',',') ?> VND / <?= $product['unit'] ?></h5>
+                                            <h5 class="text-danger"><?= number_format($product['price'],-3,',','.') ?> VND / <?= $product['unit'] ?></h5>
                                         </div>
                                     </div>
                                 </div>

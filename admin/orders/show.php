@@ -9,9 +9,15 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <?php if (!in_array($order['status'], [3, 4])): ?>
-            <form method="POST" action="update-status.php">
-                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
-                <select name="status" class="status" style="padding:0.4rem 0;outline:none;">
+        <form method="POST" action="update-status.php" class="row">
+            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+            <?php if ($order['status'] == 1): ?>
+            <span class="col-lg-4 mb-1 me-1">
+                <input type="text" class="form-control" name="shipping_code" placeholder="Mã vận đơn">
+            </span>
+            <?php endif; ?>
+            <span class="col-lg-3 mb-1 me-1">
+                <select name="status" class="form-control">
                     <?php if ($order['status'] == 0): ?>
                         <option value="1">Xác nhận</option>
                         <option value="4">Hủy đơn hàng</option>
@@ -21,8 +27,11 @@
                         <option value="3">Hoàn thành</option>
                     <?php endif; ?>
                 </select>
+            </span>
+            <span class="col-lg-2 col-md-6 mb-1 me-1">
                 <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
-            </form>
+            </span>
+        </form>
         <?php endif; ?>
         <div class="row mt-2">
             <div class="col-md-6">
@@ -44,7 +53,7 @@
                         <h4 class="card-title text-center">Thông tin thanh toán</h4>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
-                            <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', ',') ?> VND</span></li>
+                            <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', '.') ?> VND</span></li>
                             <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
                             <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
                                     <?php
@@ -69,6 +78,9 @@
                                     ?>
                                 </span>
                             </li>
+                            <?php if ($order['status'] >= 2): ?>
+                            <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -91,8 +103,8 @@
                             <td><?= $count ?></td>
                             <td><?= $orderDetail['product']['name'] ?></td>
                             <td><?= $orderDetail['qty'] ?></td>
-                            <td><?= number_format($orderDetail['price'],-3,',',',') ?> VND</td>
-                            <td><?= number_format($orderDetail['price'] * $orderDetail['qty'],-3,',',',') ?> VND</td>
+                            <td><?= number_format($orderDetail['price'],-3,',','.') ?> VND</td>
+                            <td><?= number_format($orderDetail['price'] * $orderDetail['qty'],-3,',','.') ?> VND</td>
                         </tr>
                     <?php $count++; endforeach; ?>
                 </tbody>

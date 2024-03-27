@@ -21,7 +21,7 @@ function addToCart(id) {
             var response = JSON.parse(response);
             if (response.status == 200) {
                 $("#qty_cart").html(response.qty);
-                $("#price_cart").html(numberFormat(response.price) + " VND");
+                $("#price_cart").html(numberFormat(response.price));
                 Toast.fire({ title: "Thêm vào giỏ hàng thành công", type: "success" });
             } else {
                 Toast.fire({ title: response.msg, type: "error" });
@@ -31,7 +31,7 @@ function addToCart(id) {
 }
 
 function numberFormat(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return Number(number).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
 }
 
 $("span.inc.qtybtn").click(function () {
@@ -101,11 +101,11 @@ function reloadCart() {
                     $(item)
                         .closest(".shoping__cart__quantity")
                         .siblings(".shoping__cart__price")
-                        .html(numberFormat(response[currentId].item_price) + " VND");
+                        .html(numberFormat(response[currentId].item_price));
                     $(item)
                         .closest(".shoping__cart__quantity")
                         .siblings(".shoping__cart__total")
-                        .html(numberFormat(response[currentId].item_price * response[currentId].item_qty) + " VND");
+                        .html(numberFormat(response[currentId].item_price * response[currentId].item_qty));
                 } else {
                     $(item)
                         .closest("tr")
@@ -121,8 +121,8 @@ function reloadCart() {
                 totalPrice += item.item_price * item.item_qty;
             });
             $("#qty_cart").html(totalProduct);
-            $("#price_cart").html(numberFormat(totalPrice) + " VND");
-            $("#total_price").html(numberFormat(totalPrice) + " VND");
+            $("#price_cart").html(numberFormat(totalPrice));
+            $("#total_price").html(numberFormat(totalPrice));
         },
     });
 }

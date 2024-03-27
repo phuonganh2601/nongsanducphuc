@@ -47,7 +47,7 @@
                             <div class="checkout__order__products">Sản phẩm <span>Tổng tiền</span></div>
                             <ul>
                                 <?php foreach ($_SESSION['shopping_cart'] as $row): ?>
-                                    <li><?= $row['item_name'] . " x " . $row['item_qty'] ?> <span><?= number_format($row['item_price'] * $row['item_qty'] ,-3,',',',') ?> VND</span></li>
+                                    <li><?= $row['item_name'] . " x " . $row['item_qty'] ?> <span><?= number_format($row['item_price'] * $row['item_qty'] ,-3,',','.') ?> VND</span></li>
                                 <?php endforeach; ?>
                             </ul>
                             <div class="checkout__order__total">Thành tiền <span class="total-cart">

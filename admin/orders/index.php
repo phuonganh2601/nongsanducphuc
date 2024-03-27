@@ -38,7 +38,7 @@
                             <td>#<?= $row['id'] ?></td>
                             <td><?= $row['name'] ?></td>
                             <td><?= $row['tel'] ?></td>
-                            <td><?= number_format($row['total'], -3, ',', ',') ?> VND</td>
+                            <td><?= number_format($row['total'], -3, ',', '.') ?> VND</td>
                             <td><?= date('d/m/Y H:i:s', strtotime($row['created_at'])) ?></td>
                             <td>
                                 <?php

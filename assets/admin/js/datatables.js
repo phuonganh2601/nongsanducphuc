@@ -2,7 +2,8 @@
 $(document).ready(function() {
   $('#dataTable').DataTable({
     "language": {
-      url: '//cdn.datatables.net/plug-ins/2.0.3/i18n/vi.json',
-    }
+      url: '../../assets/admin/js/datatables.vi.json',
+    },
+    order: [[4, 'desc']]
   });
 });

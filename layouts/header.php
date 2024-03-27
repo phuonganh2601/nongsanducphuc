@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="assets/client/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/client/css/dataTables.dataTables.css">
 </head>
 
 <body>
@@ -60,7 +61,7 @@
                     <div>Xin chào, <?= $_SESSION['user']['name'] ?></div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
-                        <li><a href="order.php">Đơn hàng của tôi</a></li>
+                        <li><a href="my-order.php">Đơn hàng của tôi</a></li>
                         <li><a href="logout.php">Đăng xuất</a></li>
                     </ul>
                 </div>
@@ -140,7 +141,7 @@
                                 return $total;
                             }, 
                             0
-                        ),-3,'.','.') : 0 ?> VND</span></div>
+                        ),-3,',','.') : 0 ?> VND</span></div>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3><?= $product['name'] ?></h3>
-                    <div class="product__details__price text-danger"><?= number_format($product['price'],-3,',',',') ?> VND / <?= $product['unit'] ?></div>
+                    <div class="product__details__price text-danger"><?= number_format($product['price'],-3,',','.') ?> VND / <?= $product['unit'] ?></div>
                     <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);" class="site-btn">THÊM VÀO GIỎ HÀNG</a>
                     <ul>
                         <li><b>Danh mục</b> <span><?= $product['category_name'] ?></span></li>

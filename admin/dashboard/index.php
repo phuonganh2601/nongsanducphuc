@@ -6,9 +6,9 @@
     $month = date('m');
     $year = date('Y');
     if (isset($_GET['filter-day'])) {
-        $date = $_GET['date'];
-        $revenueEachDay = @getRevenueByDate($connect, $date);
-        $date = date("d/m/Y", strtotime($_GET['date']));
+        $filter_date = $_GET['date'];
+        $revenueEachDay = @getRevenueByDate($connect, $filter_date);
+        $date = date("d/m/Y", strtotime($filter_date));
     } elseif (isset($_GET['filter-month-year'])) {
         $month = $_GET['month'];
         $year = $_GET['year'];

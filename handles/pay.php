@@ -10,7 +10,7 @@
     $type = $_POST['type'];
     $userId = $_SESSION['user']['id'];
     $total = array_reduce($_SESSION['shopping_cart'], 
-    function($total, $item) {
+        function($total, $item) {
             $total += $item['item_price'] * $item['item_qty'];
 
             return $total;
@@ -25,6 +25,10 @@
             $productId = $row['item_id'];
             $qty = $row['item_qty'];
             $price = $row['item_price'];
+
+            $updateSql = "UPDATE products SET qty = GREATEST(qty - {$qty}, 0) WHERE id = {$productId}";
+            mysqli_query($connect, $updateSql);
+
             $sql = "INSERT INTO order_details (order_id, product_id, qty, price) VALUES ('{$orderId}', {$productId}, {$qty}, {$price})";
             mysqli_query($connect, $sql);
         }

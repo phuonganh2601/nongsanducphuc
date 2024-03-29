@@ -141,9 +141,15 @@ ol {
 }
 
 a.site-btn:hover,
-button.site-btn:hover {
-	color: #fff;
+button.site-btn:hover,
+.primary-btn:hover {
+	color: #fff !important;
 	background: #20915c
+}
+
+.site-btn:focus,
+.primary-btn:focus {
+	color: #fff
 }
 
 #preloder {
@@ -3401,11 +3407,6 @@ button.site-btn:hover {
 	.blog__details__hero__text h2 {
 		font-size: 24px
 	}
-}
-
-.primary-btn:hover {
-	color: #fff !important;
-	background: #20915c
 }
 
 a:hover {

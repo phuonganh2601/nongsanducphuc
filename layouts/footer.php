@@ -68,6 +68,7 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
     <script src="assets/client/js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <script src="assets/client/js/bootstrap.min.js"></script>
+    <script src="assets/client/js/jquery.nice-select.min.js"></script>
     <script src="assets/client/js/jquery-ui.min.js"></script>
     <script src="assets/client/js/jquery.slicknav.js"></script>
     <script src="assets/client/js/mixitup.min.js"></script>

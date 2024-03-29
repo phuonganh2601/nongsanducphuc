@@ -8,6 +8,7 @@
     if (isset($_GET['filter-day'])) {
         $date = $_GET['date'];
         $revenueEachDay = @getRevenueByDate($connect, $date);
+        $date = date("d/m/Y", strtotime($_GET['date']));
     } elseif (isset($_GET['filter-month-year'])) {
         $month = $_GET['month'];
         $year = $_GET['year'];
@@ -123,7 +124,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh thu tháng <?= $month ?> năm <?= $year ?> của từng sản phẩm</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh thu tháng <?= $month ?>/<?= $year ?> của từng sản phẩm</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -204,6 +205,7 @@
 
         var options = {
             title: 'Thống kê doanh thu ngày <?= $date ?> của từng sản phẩm',
+            legend: { position: 'none' },
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('revenueDayColumnChart'));
@@ -229,7 +231,8 @@
         );
 
         var options = {
-            title: 'Thống kê doanh thu tháng <?= $month ?> năm <?= $year ?> của từng sản phẩm',
+            title: 'Thống kê doanh thu tháng <?= $month ?>/<?= $year ?> của từng sản phẩm',
+            legend: { position: 'none' },
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('revenueMonthColumnChart'));

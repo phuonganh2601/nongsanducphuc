@@ -26,7 +26,7 @@
             <div class="col-lg-9 col-md-7">
                 <div class="filter__item">
                     <div class="row">
-                        <div class="col-lg-4 col-md-5">
+                        <div class="col-lg-12">
                             <div class="filter__sort">
                                 <span>Sắp xếp theo giá</span>
                                 <select id="sort_price">
@@ -44,7 +44,7 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">
                                     <a href="product-detail.php?id=<?= $product['id'] ?>" style="display: block; width: 100%; height: 100%;"></a>
-                                    <ul class="featured__item__pic__hover">
+                                    <ul class="product__item__pic__hover">
                                         <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a></li>
                                     </ul>
                                 </div>

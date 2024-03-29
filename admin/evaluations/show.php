@@ -17,6 +17,8 @@
                         <th>#</th>
                         <th>Người dùng</th>
                         <th>Số sao</th>
+                        <th>Đánh giá</th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +27,12 @@
                             <td><?= $count ?></td>
                             <td><?= $row['userName'] ?></td>
                             <td><?= $row['star'] ?></td>
+                            <td><?= $row['comment'] ?></td>
+                            <td>
+                                <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Bạn muốn xóa đánh giá này ?')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     <?php $count++; endwhile; ?>
                 </tbody>

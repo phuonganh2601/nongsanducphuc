@@ -77,6 +77,7 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
     <script src="assets/client/js/add-to-cart.js"></script>
     <script src="assets/client/js/filter.js"></script>
     <script src="assets/client/js/sort.js"></script>
+    <script src="assets/client/js/rating.js"></script>
     <script src="assets/client/js/dataTables.js"></script>
     <script>
         $(document).ready(function() {

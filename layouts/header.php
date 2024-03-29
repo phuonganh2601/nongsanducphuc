@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="assets/client/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/client/css/comment.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/dataTables.dataTables.css">
 </head>
 

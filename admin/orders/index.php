@@ -65,6 +65,9 @@
                                 <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">
                                     Chi tiết
                                 </a>
+                                <a href="/print-invoice.php?id=<?= $row['id'] ?>" target="_blank" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-print"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

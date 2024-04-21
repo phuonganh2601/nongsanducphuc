@@ -367,7 +367,7 @@ button.site-btn:hover,
 	color: #fff;
 	padding: 10px 10px;
 	height: 40px;
-    display: block;
+	display: block;
 }
 
 .header__top__right__auth {
@@ -2730,6 +2730,19 @@ button.site-btn:hover,
 	letter-spacing: 2px
 }
 
+.button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.button-container > .left-button {
+	order: 1;
+}
+
+.button-container > .right-button {
+	order: 2;
+}
+
 @media only screen and (min-width:1200px) {
 	.container {
 		max-width: 1170px
@@ -2767,6 +2780,12 @@ button.site-btn:hover,
 
 	.shoping__discount form input {
 		width: 240px
+	}
+}
+
+@media screen and (min-width: 768px) {
+	div.info-card {
+		height: 100%;
 	}
 }
 

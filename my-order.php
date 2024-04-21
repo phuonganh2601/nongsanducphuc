@@ -51,9 +51,12 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="show-my-order.php?id=<?= $order['id'] ?>" class="site-btn" style="text-align:center; padding: 5px 10px;">
+                                    <a href="show-my-order.php?id=<?= $order['id'] ?>" class="site-btn" style="text-align:center; padding: 5px 10px;">
                                             Chi tiết
-                                        </a> 
+                                        </a>
+                                        <a href="print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="site-btn" style="text-align:center; padding: 5px 10px;">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

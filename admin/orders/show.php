@@ -1,7 +1,7 @@
-<?php 
-    include '../layouts/header.php';
-    $order = getOrderById($connect, $_GET['id']);
-    $orderDetails = getOrderDetail($connect, $_GET['id']);
+<?php
+include '../layouts/header.php';
+$order        = getOrderById($connect, $_GET['id']);
+$orderDetails = getOrderDetail($connect, $_GET['id']);
 ?>
 <h1 class="h3 mb-2 text-gray-800">Đơn hàng #<?= $_GET['id'] ?></h1>
 
@@ -9,29 +9,34 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <?php if (!in_array($order['status'], [3, 4])): ?>
-        <form method="POST" action="update-status.php" class="row">
-            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
-            <?php if ($order['status'] == 1): ?>
-            <span class="col-lg-4 mb-1 me-1">
-                <input type="text" class="form-control" name="shipping_code" placeholder="Mã vận đơn">
-            </span>
-            <?php endif; ?>
-            <span class="col-lg-3 mb-1 me-1">
-                <select name="status" class="form-control">
-                    <?php if ($order['status'] == 0): ?>
-                        <option value="1">Xác nhận</option>
-                        <option value="4">Hủy đơn hàng</option>
-                    <?php elseif ($order['status'] == 1): ?>
-                        <option value="2">Đang giao hàng</option>
-                    <?php elseif ($order['status'] == 2): ?>
-                        <option value="3">Hoàn thành</option>
-                    <?php endif; ?>
-                </select>
-            </span>
-            <span class="col-lg-2 col-md-6 mb-1 me-1">
-                <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
-            </span>
-        </form>
+            <form method="POST" action="update-status.php" class="row">
+                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                <?php if ($order['status'] == 1): ?>
+                    <span class="col-lg-4 mb-1 me-1">
+                        <input type="text" class="form-control" name="shipping_code" placeholder="Mã vận đơn">
+                    </span>
+                <?php endif; ?>
+                <span class="col-lg-3 mb-1 me-1">
+                    <select name="status" class="form-control">
+                        <?php if ($order['status'] == 0): ?>
+                            <option value="1">Xác nhận</option>
+                            <option value="4">Hủy đơn hàng</option>
+                        <?php elseif ($order['status'] == 1): ?>
+                            <option value="2">Đang giao hàng</option>
+                        <?php elseif ($order['status'] == 2): ?>
+                            <option value="3">Hoàn thành</option>
+                        <?php endif; ?>
+                    </select>
+                </span>
+                <span class="col-lg-2 col-6 mb-1 me-1">
+                    <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
+                </span>
+                <span class="col-lg-7 col-6 mb-1 me-1 text-right">
+                    <a href="/print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="btn btn-primary">
+                        <i class="fa fa-print"></i> <span class="d-none d-sm-inline">In hóa đơn</span>
+                    </a>
+                </span>
+            </form>
         <?php endif; ?>
         <div class="row mt-2">
             <div class="col-md-6">
@@ -79,7 +84,7 @@
                                 </span>
                             </li>
                             <?php if ($order['status'] >= 2): ?>
-                            <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
+                                <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
                             <?php endif; ?>
                         </ul>
                     </div>
@@ -98,15 +103,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $count = 1; foreach ($orderDetails as $orderDetail): ?>
+                    <?php $count = 1;
+                    foreach ($orderDetails as $orderDetail): ?>
                         <tr>
                             <td><?= $count ?></td>
                             <td><?= $orderDetail['product']['name'] ?></td>
                             <td><?= $orderDetail['qty'] ?></td>
-                            <td><?= number_format($orderDetail['price'],-3,',','.') ?> VND</td>
-                            <td><?= number_format($orderDetail['price'] * $orderDetail['qty'],-3,',','.') ?> VND</td>
+                            <td><?= number_format($orderDetail['price'], -3, ',', '.') ?> VND</td>
+                            <td><?= number_format($orderDetail['price'] * $orderDetail['qty'], -3, ',', '.') ?> VND</td>
                         </tr>
-                    <?php $count++; endforeach; ?>
+                        <?php $count++; endforeach; ?>
                 </tbody>
             </table>
         </div>

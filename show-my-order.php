@@ -1,15 +1,23 @@
 <?php
-    include 'layouts/header.php';
-    include 'inc/search.php';
-    $order = getOrderById($connect, $_GET['id']);
-    $orderDetails = getOrderDetail($connect, $_GET['id']);
+include 'layouts/header.php';
+include 'inc/search.php';
+$order        = getOrderById($connect, $_GET['id']);
+$orderDetails = getOrderDetail($connect, $_GET['id']);
 ?>
 <h3 class="text-center mt-3" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
 <section class="mt-4 mb-4">
     <div class="container">
+        <div class="button-container mb-2">
+            <a href="my-order.php" class="left-button primary-btn">
+                <i class="fa fa-arrow-left"></i> Danh sách đơn hàng
+            </a>
+            <a href="print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="right-button primary-btn">
+                <i class="fa fa-print"></i> In hóa đơn
+            </a>
+        </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="card" style="height: 100%;">
+            <div class="col-md-6 mb-3">
+                <div class="card info-card">
                     <div class="card-body">
                         <h4 class="card-title text-center">Thông tin khách hàng</h4>
                         <ul class="list-group list-group-flush">
@@ -21,8 +29,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card" style="height: 100%;">
+            <div class="col-md-6 mb-3">
+                <div class="card info-card">
                     <div class="card-body">
                         <h4 class="card-title text-center">Thông tin thanh toán</h4>
                         <ul class="list-group list-group-flush">
@@ -53,7 +61,7 @@
                                 </span>
                             </li>
                             <?php if ($order['status'] >= 2): ?>
-                            <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
+                                <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>
                             <?php endif; ?>
                         </ul>
                     </div>

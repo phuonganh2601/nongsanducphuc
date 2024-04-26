@@ -70,7 +70,7 @@
                 <span class="image-preview__default-text">Hình ảnh</span>
             </div>
             <br />
-            <button type="submit" name="submit" class="btn btn-primary">Thêm</button>
+            <button type="submit" name="submit" class="btn btn-primary mb-3">Thêm</button>
           </form>
     </div>
 </div>

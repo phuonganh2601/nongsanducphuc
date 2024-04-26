@@ -44,7 +44,7 @@
                 <span class="image-preview__default-text" style="display:none;">Hình ảnh</span>
             </div>
             <br />
-            <button type="submit" name="submit" class="btn btn-primary">Cập nhật</button>
+            <button type="submit" name="submit" class="btn btn-primary mb-3">Cập nhật</button>
           </form>
     </div>
 </div>

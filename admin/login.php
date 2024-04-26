@@ -14,13 +14,13 @@
                     alert("Đăng nhập thành công");
                     window.location.href = "./dashboard/index.php";
                 </script>';
-            } else {
-                echo '<script>
-                    alert("Email / Mật khẩu không đúng, vui lòng đăng nhập lại");
-                    window.location.href = "login.php";
-                </script>';
             }
         }
+
+        echo '<script>
+            alert("Email / Mật khẩu không đúng, vui lòng đăng nhập lại");
+            window.location.href = "login.php";
+        </script>';
     }
 ?>
 <!DOCTYPE html>

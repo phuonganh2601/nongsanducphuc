@@ -20,7 +20,13 @@
                                 <div class="product__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">
                                     <a href="product-detail.php?id=<?= $product['id'] ?>" style="display: block; width: 100%; height: 100%;"></a>
                                     <ul class="featured__item__pic__hover">
-                                        <li><a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a></li>
+                                        <li>
+                                            <?php if ($product['qty'] > 0): ?>
+                                                <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                                            <?php else: ?>
+                                                <a href="javascript:void(0)" id="sold-out">Đã hết hàng</a>
+                                            <?php endif; ?>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

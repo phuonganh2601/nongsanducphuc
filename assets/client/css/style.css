@@ -140,6 +140,22 @@ ol {
 	border: none
 }
 
+.site-btn-disabled {
+	font-size: 14px;
+	color: #fff;
+	font-weight: 800;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 13px 30px 12px;
+	background: #a4aaa8;
+	border: none;
+	cursor: default;
+}
+
+.site-btn-disabled:hover {
+	color: #fff !important;
+}
+
 a.site-btn:hover,
 button.site-btn:hover,
 .primary-btn:hover {
@@ -148,7 +164,8 @@ button.site-btn:hover,
 }
 
 .site-btn:focus,
-.primary-btn:focus {
+.primary-btn:focus,
+.site-btn-disabled:focus {
 	color: #fff
 }
 
@@ -3434,4 +3451,15 @@ a:hover {
 
 option:disabled {
 	background: #eee
+}
+
+#sold-out {
+	background-color: red !important;
+	color: white !important;
+}
+
+#sold-out:hover {
+	cursor: default;
+	background-color: red !important;
+	color: white !important;
 }

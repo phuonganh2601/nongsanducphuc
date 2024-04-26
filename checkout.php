@@ -1,6 +1,19 @@
 <?php 
     include 'layouts/header.php'; 
     include 'inc/search.php';
+    $productIds = array_column($_SESSION['shopping_cart'], 'item_id');
+    if (!empty(checkProductInStock($connect, $productIds))) {
+        $productNames = implode(', ', array_column(checkProductInStock($connect, $productIds), 'name'));
+        $msg = "Sản phẩm $productNames đã hết hàng";
+        foreach (array_column(checkProductInStock($connect, $productIds), 'id') as $productId){
+            unset($_SESSION['shopping_cart'][$productId]);
+        }
+        echo '<script>
+            alert("' . $msg . '");
+            window.location.href = "shopping-cart.php";
+        </script>';
+        die;
+    }
 ?>
 <h3 class="text-center mt-3 text-uppercase" style="font-weight: bold;">ĐẶT HÀNG</h3>
 <!-- Checkout Section Begin -->

@@ -2,6 +2,19 @@
     include '../inc/connect.php';
     include '../helpers/helper.php';
     session_start();
+    $productIds = array_column($_SESSION['shopping_cart'], 'item_id');
+    if (!empty(checkProductInStock($connect, $productIds))) {
+        $productNames = implode(', ', array_column(checkProductInStock($connect, $productIds), 'name'));
+        $msg = "Sản phẩm $productNames đã hết hàng";
+        foreach (array_column(checkProductInStock($connect, $productIds), 'id') as $productId){
+            unset($_SESSION['shopping_cart'][$productId]);
+        }
+        echo '<script>
+            alert("' . $msg . '");
+            window.location.href = "../shopping-cart.php";
+        </script>';
+        die;
+    }
     do {
         $orderId = str_pad(random_int(1, 999999), 6, '0', STR_PAD_LEFT);
     } while (checkExistOrderId($connect, $orderId));

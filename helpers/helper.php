@@ -307,3 +307,16 @@
 
         return mysqli_fetch_assoc($result);
     }
+
+    function checkProductInStock($connect, $productIds)
+    {
+        $products = [];
+        foreach ($productIds as $productId) {
+            $product = getProductById($connect, $productId);
+            if ((int) $product['qty'] < 1) {
+                $products[] = $product;
+            }
+        }
+
+        return $products;
+    }

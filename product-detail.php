@@ -50,7 +50,11 @@
                         <span>(<?= $rating['countRating'] ?> đánh giá)</span>
                     </div>
                     <div class="product__details__price text-danger"><?= number_format($product['price'],-3,',','.') ?> VND / <?= $product['unit'] ?></div>
-                    <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);" class="site-btn">THÊM VÀO GIỎ HÀNG</a>
+                    <?php if ($product['qty'] > 0): ?>
+                        <a href="javascript:void(0)" onclick="addToCart(<?= $product['id'] ?>);" class="site-btn">THÊM VÀO GIỎ HÀNG</a>
+                    <?php else: ?>
+                        <a href="javascript:void(0)" class="site-btn-disabled">THÊM VÀO GIỎ HÀNG</a>
+                    <?php endif; ?>
                     <ul>
                         <li><b>Danh mục</b> <span><?= $product['category_name'] ?></span></li>
                         <li><b>Trạng thái</b> <span><?= $product['qty'] > 0 ? 'Còn hàng' : 'Hết hàng' ?></span></li>

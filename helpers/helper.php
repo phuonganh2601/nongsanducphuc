@@ -23,6 +23,18 @@
         return $products;
     }
 
+    function getFeatureProducts($connect)
+    {
+        $products = [];
+        $sql = "SELECT a.*, b.name category_name FROM products a, categories b WHERE a.category_id = b.id ORDER BY RAND() LIMIT 12";
+        $result = mysqli_query($connect, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+
+        return $products;
+    }
+
     function getProductByCategoryId($connect, $categoryId)
     {
         $products = [];

@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="row featured__filter">
-            <?php foreach (getProducts($connect) as $product): ?>
+            <?php foreach (getFeatureProducts($connect) as $product): ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix <?= str_replace(' ', '', $product['category_name']) ?>">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">

@@ -79,7 +79,25 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
     <script src="assets/client/js/sort.js"></script>
     <script src="assets/client/js/rating.js"></script>
     <script src="assets/client/js/dataTables.js"></script>
+    <script src="assets/client/js/pagination.min.js"></script>
     <script>
+        function paginationProduct() {
+            var container = $('#product_pagination');
+            if (!container.length) return;
+
+            container.pagination({
+                dataSource: $('#product_grid > div').toArray(),
+                pageSize: 6,
+                showPrevious: false,
+                showNext: false,
+                callback: function(data, pagination) {
+                    $("#product_grid").fadeOut(300, function() {
+                        $(this).html(data).fadeIn(300);
+                    });
+                }
+            })
+        }
+        
         $(document).ready(function() {
             $("#orderTable").DataTable({
                 "language": {
@@ -93,6 +111,8 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
                     url: 'assets/client/js/datatables.vi.json',
                 }
             });
+
+            paginationProduct();
         });
     </script>
 </body>

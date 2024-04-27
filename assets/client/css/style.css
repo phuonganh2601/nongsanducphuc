@@ -1518,7 +1518,7 @@ button.site-btn:hover,
 	padding-top: 10px
 }
 
-.product__pagination a,
+.product__pagination li,
 .blog__pagination a {
 	display: inline-block;
 	width: 30px;
@@ -1530,6 +1530,9 @@ button.site-btn:hover,
 	line-height: 28px;
 	text-align: center;
 	margin-right: 16px;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 	-webkit-transition: all, 0.3s;
 	-moz-transition: all, 0.3s;
 	-ms-transition: all, 0.3s;
@@ -1537,14 +1540,21 @@ button.site-btn:hover,
 	transition: all, 0.3s
 }
 
-.product__pagination a:hover,
+.product__pagination li:hover:not(.disabled),
 .blog__pagination a:hover {
 	background: #008747;
 	border-color: #008747;
-	color: #fff
+	color: #fff;
+	cursor: pointer
 }
 
-.product__pagination a:last-child,
+.product__pagination li.active {
+	background: #008747;
+	border-color: #008747;
+	color: #fff;
+}
+
+.product__pagination li:last-child,
 .blog__pagination a:last-child {
 	margin-right: 0
 }

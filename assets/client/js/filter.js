@@ -33,13 +33,14 @@ function filterProductByCategory(id) {
                 } else {
                     html += '<p>Hiện chưa có sản phẩm nào</p>';
                 }
-                $("#product_grid").fadeOut(function() {
-                    $(this).html(html).fadeIn();
+                $("#product_grid").fadeOut(300, function() {
+                    $(this).html(html);
                     $('.set-bg').each(function () {
                         var bg = $(this).data('setbg');
                         $(this).css('background-image', 'url(' + bg + ')');
                         $(this).css('background-color', '#f3f6fa');
                     });
+                    paginationProduct();
                 });
             }
         }

@@ -86,7 +86,11 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                            <p>Đã có <?= $rating['countRating'] ?> đánh giá về sản phẩm này</p>
+                            <?php if ($rating['countRating'] <= 0): ?>
+                                <p>Chưa có đánh giá về sản phẩm này</p>
+                            <?php else: ?>
+                                <p>Đã có <?= $rating['countRating'] ?> đánh giá về sản phẩm này</p>
+                            <?php endif; ?>
                             <div class="comment-sec-area">
                                 <div class="container">
                                     <div class="row flex-column">
@@ -137,11 +141,7 @@
                             <?php if (isset($_SESSION['user']['id'])): ?>
                                 <p>Chất lượng sản phẩm: 
                                     <?php for ($count = 1;$count <= 5;$count++): ?>
-                                        <?php if ($count == 1): ?>
-                                            <i class="fa fa-star rating" id="<?= $product['id'] ?>-<?= $count ?>" data-index="<?= $count ?>" data-product_id="<?= $product['id'] ?>" style="color: #edbb0e; cursor: pointer;"></i>
-                                        <?php else: ?>
-                                            <i class="fa fa-star rating" id="<?= $product['id'] ?>-<?= $count ?>" data-index="<?= $count ?>" data-product_id="<?= $product['id'] ?>" style="color: #ccc; cursor: pointer;"></i>
-                                        <?php endif; ?>
+                                        <i class="fa fa-star rating" id="<?= $product['id'] ?>-<?= $count ?>" data-index="<?= $count ?>" data-product_id="<?= $product['id'] ?>" style="color: #edbb0e; cursor: pointer;"></i>
                                     <?php endfor; ?>
                                 </p>
                                 <form class="mt-3" action="" method="POST">

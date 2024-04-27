@@ -745,7 +745,8 @@ button.site-btn:hover,
 .categories__item {
 	height: 270px;
 	position: relative;
-	border: 1px solid #ebebeb
+	border: 1px solid #ebebeb;
+	background-color: #e7f2d8
 }
 
 .categories__item h5 {
@@ -1553,11 +1554,20 @@ button.site-btn:hover,
 }
 
 .product__details__pic__item {
-	margin-bottom: 20px
+	margin-bottom: 20px;
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+	position: relative;
 }
 
 .product__details__pic__item img {
-	min-width: 100%
+	width: auto;
+	height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .product__details__pic__slider img {
@@ -1690,7 +1700,7 @@ button.site-btn:hover,
 }
 
 .product__details__tab {
-	padding-top: 85px
+	/*padding-top: 85px*/
 }
 
 .product__details__tab .nav-tabs {

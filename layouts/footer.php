@@ -8,7 +8,7 @@
                         <a class="text-dark" href="index.php"><img src="assets/client/img/logo.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Địa chỉ: Hà Nội</li>
+                        <li>Địa chỉ: Đông Anh - Hà Nội</li>
                         <li>SĐT: 0363 960 410</li>
                         <li>Email: huyhoang.sdv@gmail.com</li>
                     </ul>

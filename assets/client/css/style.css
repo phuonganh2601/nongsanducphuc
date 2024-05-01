@@ -1563,21 +1563,15 @@ button.site-btn:hover,
 	padding-top: 80px
 }
 
-.product__details__pic__item {
-	margin-bottom: 20px;
-	width: 500px;
-	height: 500px;
-	overflow: hidden;
-	position: relative;
+.product__details__pic {
+	background-color: rgb(243, 246, 250);
 }
 
-.product__details__pic__item img {
-	width: auto;
-	height: 100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.product__details__pic__item {
+	margin-bottom: 20px;
+	max-height: 500px;
+	overflow: hidden;
+	position: relative;
 }
 
 .product__details__pic__slider img {
@@ -3482,4 +3476,17 @@ option:disabled {
 	cursor: default;
 	background-color: red !important;
 	color: white !important;
+}
+
+.introduce h4 {
+	font-weight: 800;
+}
+
+.introduce strong {
+    font: 400 18px / 32px "Plus Jakarta Sans", sans-serif;
+    font-weight: 800;
+}
+
+.introduce p {
+    font: 400 18px / 32px "Plus Jakarta Sans", sans-serif;
 }

@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
-                    <div class="product__details__pic__item">
+                    <div class="product__details__pic__item text-center">
                         <img class="product__details__pic__item--large"
                             src="assets/admin/img/products/<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
                     </div>
@@ -145,7 +145,7 @@
                                     <?php endfor; ?>
                                 </p>
                                 <form class="mt-3" action="" method="POST">
-                                    <input type="hidden" name="star" id="star" value="1">
+                                    <input type="hidden" name="star" id="star" value="5">
                                     <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id'] ?>" />
                                     <input type="hidden" name="product_id" value="<?= $product['id'] ?>" />
                                     <textarea class="form-control mb-10" name="comment" cols="5" rows="4"

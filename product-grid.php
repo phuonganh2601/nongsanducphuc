@@ -62,7 +62,7 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="product__pagination mb-5" id="product_pagination"></div>
+                <div class="product__pagination text-center mb-5" id="product_pagination"></div>
             </div>
         </div>
     </div>

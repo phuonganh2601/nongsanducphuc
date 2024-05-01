@@ -32,6 +32,9 @@
             $products[] = $row;
         }
 
+        $category_id = array_column($products, "category_id");
+        array_multisort($category_id, SORT_ASC, $products);
+
         return $products;
     }
 

@@ -43,7 +43,7 @@
                         </div>
                         <div class="checkout__input">
                             <p>Địa chỉ nhận hàng <span class="text-danger">*</span></p>
-                            <input type="text" placeholder="Nhập địa chỉ" name="address" class="checkout__input__add" required>
+                            <input type="text" placeholder="Nhập địa chỉ" name="address" class="checkout__input__add" value="<?= $_SESSION['user']['address'] ?>" required>
                         </div>
                         <div class="checkout__input">
                             <p>Hình thức thanh toán <span class="text-danger">*</span></p>

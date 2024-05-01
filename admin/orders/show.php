@@ -12,7 +12,7 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
             <form method="POST" action="update-status.php" class="row">
                 <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                 <?php if ($order['status'] == 1): ?>
-                    <span class="col-lg-4 mb-1 me-1">
+                    <span class="col-lg-3 mb-1 me-1">
                         <input type="text" class="form-control" name="shipping_code" placeholder="Mã vận đơn">
                     </span>
                 <?php endif; ?>
@@ -31,12 +31,20 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
                 <span class="col-lg-2 col-6 mb-1 me-1">
                     <button class="btn btn-primary" type="submit" name="submit">Cập nhật</button>
                 </span>
-                <span class="col-lg-7 col-6 mb-1 me-1 text-right">
+                <span class="col-lg col-6 mb-1 me-1 text-right">
                     <a href="/print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="btn btn-primary">
                         <i class="fa fa-print"></i> <span class="d-none d-sm-inline">In hóa đơn</span>
                     </a>
                 </span>
             </form>
+        <?php else: ?>
+            <div class="row">
+                <span class="col-lg col-6 mb-1 me-1 text-right">
+                    <a href="/print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="btn btn-primary">
+                        <i class="fa fa-print"></i> <span class="d-none d-sm-inline">In hóa đơn</span>
+                    </a>
+                </span>
+            </div>
         <?php endif; ?>
         <div class="row mt-2">
             <div class="col-md-6">

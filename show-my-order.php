@@ -7,13 +7,22 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
 <h3 class="text-center mt-3" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
 <section class="mt-4 mb-4">
     <div class="container">
-        <div class="button-container mb-2">
-            <a href="my-order.php" class="left-button primary-btn">
-                <i class="fa fa-arrow-left"></i> Danh sách đơn hàng
-            </a>
-            <a href="print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="right-button primary-btn">
-                <i class="fa fa-print"></i> In hóa đơn
-            </a>
+        <div class="row mb-2">
+            <div class="col-lg-5 mb-2 mb-lg-0 text-lg-left text-center">
+                <a href="my-order.php" class="left-button primary-btn">
+                    <i class="fa fa-arrow-left"></i> Danh sách đơn hàng
+                </a>
+            </div>
+            <div class="col-lg-7 text-lg-right text-center">
+                <?php if ($order['status'] == 1): ?>
+                <a href="vnpay/payment.php?order=<?= $order['id'] ?>" target="_blank" class="right-button primary-btn">
+                    <i class="fa fa-credit-card"></i> Thanh toán
+                </a>
+                <?php endif; ?>
+                <a href="print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="right-button primary-btn">
+                    <i class="fa fa-print"></i> In hóa đơn
+                </a>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -36,29 +45,8 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
                             <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', '.') ?> VND</span></li>
-                            <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
-                            <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
-                                    <?php
-                                    switch ($order['status'])
-                                    {
-                                        case 0:
-                                            echo 'Chờ xác nhận';
-                                            break;
-                                        case 1:
-                                            echo 'Xác nhận';
-                                            break;
-                                        case 2:
-                                            echo 'Đang giao hàng';
-                                            break;
-                                        case 3:
-                                            echo 'Hoàn thành';
-                                            break;
-                                        default:
-                                            echo 'Hủy';
-                                            break;
-                                    }
-                                    ?>
-                                </span>
+                            <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= orderType($order['type']) ?></span></li>
+                            <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right"><?= statusType($order['status']) ?></span>
                             </li>
                             <?php if ($order['status'] >= 2): ?>
                                 <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>

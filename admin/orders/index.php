@@ -33,39 +33,19 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php while($row = mysqli_fetch_assoc($result)): ?>
+                    <?php while($order = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td>#<?= $row['id'] ?></td>
-                            <td><?= $row['name'] ?></td>
-                            <td><?= $row['tel'] ?></td>
-                            <td><?= number_format($row['total'], -3, ',', '.') ?> VND</td>
-                            <td><?= date('d/m/Y H:i:s', strtotime($row['created_at'])) ?></td>
+                            <td>#<?= $order['id'] ?></td>
+                            <td><?= $order['name'] ?></td>
+                            <td><?= $order['tel'] ?></td>
+                            <td><?= number_format($order['total'], -3, ',', '.') ?> VND</td>
+                            <td><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></td>
+                            <td><?= statusType($order['status']) ?></td>
                             <td>
-                                <?php
-                                    switch ($row['status']) {
-                                        case 0:
-                                            echo 'Chờ xác nhận';
-                                            break;
-                                        case 1:
-                                            echo 'Xác nhận';
-                                            break;
-                                        case 2:
-                                            echo 'Đang giao hàng';
-                                            break;
-                                        case 3:
-                                            echo 'Hoàn thành';
-                                            break;
-                                        default:
-                                            echo 'Hủy';
-                                            break;
-                                    }
-                                ?>
-                            </td>
-                            <td>
-                                <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">
+                                <a href="show.php?id=<?= $order['id'] ?>" class="btn btn-primary btn-sm">
                                     Chi tiết
                                 </a>
-                                <a href="/print-invoice.php?id=<?= $row['id'] ?>" target="_blank" class="btn btn-primary btn-sm">
+                                <a href="/print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="btn btn-primary btn-sm">
                                     <i class="fa fa-print"></i>
                                 </a>
                             </td>

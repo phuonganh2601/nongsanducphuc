@@ -8,23 +8,26 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <?php if (!in_array($order['status'], [3, 4])): ?>
+        <?php if (!in_array($order['status'], [5, 6])): ?>
             <form method="POST" action="update-status.php" class="row">
                 <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
-                <?php if ($order['status'] == 1): ?>
+                <?php if ($order['status'] == 3): ?>
                     <span class="col-lg-3 mb-1 me-1">
                         <input type="text" class="form-control" name="shipping_code" placeholder="Mã vận đơn">
                     </span>
                 <?php endif; ?>
                 <span class="col-lg-3 mb-1 me-1">
                     <select name="status" class="form-control">
-                        <?php if ($order['status'] == 0): ?>
-                            <option value="1">Xác nhận</option>
-                            <option value="4">Hủy đơn hàng</option>
+                        <?php if ($order['status'] == 0 || $order['status'] == 2): ?>
+                            <option value="3">Xác nhận</option>
+                            <option value="6">Hủy đơn hàng</option>
                         <?php elseif ($order['status'] == 1): ?>
-                            <option value="2">Đang giao hàng</option>
-                        <?php elseif ($order['status'] == 2): ?>
-                            <option value="3">Hoàn thành</option>
+                            <option value="2">Đã thanh toán</option>
+                            <option value="6">Hủy đơn hàng</option>
+                        <?php elseif ($order['status'] == 3): ?>
+                            <option value="4">Đang giao hàng</option>
+                        <?php elseif ($order['status'] == 4): ?>
+                            <option value="5">Hoàn thành</option>
                         <?php endif; ?>
                     </select>
                 </span>
@@ -67,29 +70,8 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
                             <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', '.') ?> VND</span></li>
-                            <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
-                            <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
-                                    <?php
-                                    switch ($order['status'])
-                                    {
-                                        case 0:
-                                            echo 'Chờ xác nhận';
-                                            break;
-                                        case 1:
-                                            echo 'Xác nhận';
-                                            break;
-                                        case 2:
-                                            echo 'Đang giao hàng';
-                                            break;
-                                        case 3:
-                                            echo 'Hoàn thành';
-                                            break;
-                                        default:
-                                            echo 'Hủy';
-                                            break;
-                                    }
-                                    ?>
-                                </span>
+                            <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= orderType($order['type']) ?></span></li>
+                            <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right"><?= statusType($order['status']) ?></span>
                             </li>
                             <?php if ($order['status'] >= 2): ?>
                                 <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>

@@ -2,6 +2,7 @@
     include '../layouts/header.php';
     $revenueEachDay = @getRevenueEachDay($connect);
     $revenueEachMonth = @getRevenueEachMonth($connect);
+    $ordersDonut = @getOrdersDonut($connect);
     $date = date('d/m/Y');
     $month = date('m');
     $year = date('Y');
@@ -98,6 +99,22 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                            Tổng đơn hàng</div>
+                        <div class="h6 mb-0 font-weight-bold text-gray-800"><?= @getTotalOrder($connect)['count_order'] ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Content Row -->
@@ -109,7 +126,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh thu ngày <?= $date ?> của từng sản phẩm</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán chạy nhất ngày <?= $date ?></h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -118,13 +135,13 @@
                     <input type="date" class="form-control mb-2 mr-sm-2" name="date" id="date" required>
                     <button type="submit" name="filter-day" class="btn btn-primary mb-2">Lọc</button>
                 </form>
-                <div id="revenueDayColumnChart" style="width: 100%;"></div>
+                <canvas id="revenueDayChart"></canvas>
             </div>
         </div>
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Thống kê doanh thu tháng <?= $month ?>/<?= $year ?> của từng sản phẩm</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán chạy nhất tháng <?= $month ?>/<?= $year ?></h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -145,7 +162,7 @@
                     </select>
                     <button type="submit" name="filter-month-year" class="btn btn-primary">Lọc</button>
                 </form>
-                <div id="revenueMonthColumnChart" style="width: 100%;"></div>
+                <canvas id="revenueMonthChart"></canvas>
             </div>
         </div>
     </div>
@@ -155,89 +172,134 @@
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê đơn hàng</h6>
             </div>
             <div class="card-body">
-                <h4 class="small font-weight-bold">Chờ xác nhận <span class="float-right"><?= @getOrderPending($connect)['count_order'] ?></span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= @getOrderPending($connect)['count_order'] ?>%"></div>
-                </div>
-                <h4 class="small font-weight-bold">Xác nhận <span class="float-right"><?= @getOrderConfirm($connect)['count_order'] ?></span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= @getOrderConfirm($connect)['count_order'] ?>%"></div>
-                </div>
-                <h4 class="small font-weight-bold">Đang giao hàng <span class="float-right"><?= @getOrderShip($connect)['count_order'] ?></span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-secondary" role="progressbar" style="width: <?= @getOrderShip($connect)['count_order'] ?>%"></div>
-                </div>
-                <h4 class="small font-weight-bold">Hoàn thành <span class="float-right"><?= @getOrderDone($connect)['count_order'] ?></span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= @getOrderDone($connect)['count_order'] ?>%"></div>
-                </div>
-                <h4 class="small font-weight-bold">Hủy <span class="float-right"><?= @getOrderCancel($connect)['count_order'] ?></span></h4>
-                <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= @getOrderCancel($connect)['count_order'] ?>%"></div>
-                </div>
+                <canvas id="ordersChart"></canvas>
             </div>
         </div>
     </div>
 </div>
 <input type="hidden" id="data1" value='<?= $revenueEachDay ?>' />
 <input type="hidden" id="data2" value='<?= $revenueEachMonth ?>' />
+<input type="hidden" id="data3" value='<?= $ordersDonut ?>' />
 <!-- /.container-fluid -->
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
-    var arr = [['Sản phẩm', 'Doanh thu', { role: "style" }]];
-    var orders = JSON.parse(document.getElementById("data1").value);
-    if (orders.length < 1) {
-        arr.push(['', 0, '#3366CC']);
+    var jsonData1 = JSON.parse(document.getElementById("data1").value);
+    var labels = [];
+    var values = [];
+    for (var key in jsonData1) {
+        if (jsonData1.hasOwnProperty(key)) {
+            labels.push(key);
+            values.push(parseInt(jsonData1[key].total));
+        }
     }
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    for(x in orders){
-        arr.push([x, parseInt(orders[x].total),'#3366CC'])
-    }  
-    function drawChart() {
 
-        var data = google.visualization.arrayToDataTable(
-            arr
-        );
+    var datasetDay = {
+        labels: labels,
+        datasets: [{
+            label: 'Tổng doanh thu theo ngày',
+            data: values,
+            borderWidth: 1
+        }]
+    };
 
-        var options = {
-            title: 'Thống kê doanh thu ngày <?= $date ?> của từng sản phẩm',
-            legend: { position: 'none' },
-        };
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('revenueDayColumnChart'));
-
-        chart.draw(data, options);
+    var configDay = {
+        type: 'bar',
+        data: datasetDay,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (item) => `Doanh thu: ${item.formattedValue} VND`,
+                    },
+                },
+            }
+        },
     }
-</script>
-<script type="text/javascript">
-    var arr1 = [['Sản phẩm', 'Doanh thu', { role: "style" }]];
-    var orders = JSON.parse(document.getElementById("data2").value);
-    if (orders.length < 1) {
-        arr1.push(['', 0, '#3366CC']);
+
+    const ctxDay = document.getElementById('revenueDayChart');
+    new Chart(ctxDay, configDay);
+    
+    var jsonData2 = JSON.parse(document.getElementById("data2").value);
+    var labels = [];
+    var values = [];
+    for (var key in jsonData2) {
+        if (jsonData2.hasOwnProperty(key)) {
+            labels.push(key);
+            values.push(parseInt(jsonData2[key].total));
+        }
     }
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    for(x in orders){
-        arr1.push([x, parseInt(orders[x].total),'#3366CC'])
-    }  
-    function drawChart() {
 
-        var data = google.visualization.arrayToDataTable(
-            arr1
-        );
+    var datasetMonth = {
+        labels: labels,
+        datasets: [{
+            label: 'Tổng doanh thu theo tháng',
+            data: values,
+            borderWidth: 1
+        }]
+    };
 
-        var options = {
-            title: 'Thống kê doanh thu tháng <?= $month ?>/<?= $year ?> của từng sản phẩm',
-            legend: { position: 'none' },
-        };
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('revenueMonthColumnChart'));
-
-        chart.draw(data, options);
+    var configMonth = {
+        type: 'bar',
+        data: datasetMonth,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (item) => `Doanh thu: ${item.formattedValue} VND`,
+                    },
+                },
+            }
+        },
     }
+
+    const ctxMonth = document.getElementById('revenueMonthChart');
+    new Chart(ctxMonth, configMonth);
+    
+    var jsonData3 = JSON.parse(document.getElementById("data3").value);
+    const datasetOrders = {
+        labels: ['Chờ xác nhận', 'Chưa thanh toán', 'Đã thanh toán', 'Đã xác nhận', 'Đang giao hàng', 'Hoàn thành', 'Đã hủy'],
+        datasets: [{
+            data: jsonData3,
+            backgroundColor: ['#f6c23e', '#858796', '#36b9cc', '#5a5c69', '#4e73df', '#1cc88a', '#e74a3b'],
+        }]
+    };
+
+    const configOrders = {
+        type: 'doughnut',
+        data: datasetOrders,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Đơn hàng'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (item) => ` ${item.formattedValue} đơn hàng`,
+                    },
+                },
+            },
+        },
+    };
+
+    const ctxOrders = document.getElementById('ordersChart');
+    new Chart(ctxOrders, configOrders);
 </script>
 <?php include '../layouts/footer.php'; ?>

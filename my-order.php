@@ -29,27 +29,7 @@
                                     <td><?= $order['tel'] ?></td>
                                     <td><?= number_format($order['total'],-3,',','.') ?> VND</td>
                                     <td><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></td>
-                                    <td>
-                                        <?php
-                                            switch ($order['status']) {
-                                                case 0:
-                                                    echo 'Chờ xác nhận';
-                                                    break;
-                                                case 1:
-                                                    echo 'Xác nhận';
-                                                    break;
-                                                case 2:
-                                                    echo 'Đang giao hàng';
-                                                    break;
-                                                case 3:
-                                                    echo 'Hoàn thành';
-                                                    break;
-                                                default:
-                                                    echo 'Hủy';
-                                                    break;
-                                            }
-                                        ?>
-                                    </td>
+                                    <td><?= statusType($order['status']) ?></td>
                                     <td>
                                     <a href="show-my-order.php?id=<?= $order['id'] ?>" class="site-btn" style="text-align:center; padding: 5px 10px;">
                                             Chi tiết

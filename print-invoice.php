@@ -84,29 +84,8 @@ list($year, $month, $day) = explode("-", $currentDate);
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><strong>Ngày thanh toán: </strong><span class="float-right"><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></span></li>
                                 <li class="list-group-item"><strong>Tổng tiền: </strong><span class="float-right"><?= number_format($order['total'], -3, ',', '.') ?> VND</span></li>
-                                <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= $order['type'] == 0 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản qua ngân hàng' ?></span></li>
-                                <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right">
-                                        <?php
-                                        switch ($order['status'])
-                                        {
-                                            case 0:
-                                                echo 'Chờ xác nhận';
-                                                break;
-                                            case 1:
-                                                echo 'Xác nhận';
-                                                break;
-                                            case 2:
-                                                echo 'Đang giao hàng';
-                                                break;
-                                            case 3:
-                                                echo 'Hoàn thành';
-                                                break;
-                                            default:
-                                                echo 'Hủy';
-                                                break;
-                                        }
-                                        ?>
-                                    </span>
+                                <li class="list-group-item"><strong>Phương thức thanh toán: </strong><span class="float-right"><?= orderType($order['type']) ?></span></li>
+                                <li class="list-group-item"><strong>Trạng thái: </strong><span class="float-right"><?= statusType($order['status']) ?></span>
                                 </li>
                                 <?php if ($order['status'] >= 2): ?>
                                     <li class="list-group-item"><strong>Mã vận đơn: </strong><span class="float-right"><?= $order['shipping_code'] ?></span></li>

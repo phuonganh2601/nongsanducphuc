@@ -159,33 +159,51 @@
         return mysqli_fetch_assoc(mysqli_query($connect, $sql));
     }
 
-    function getOrderConfirm($connect)
+    function getOrderUnpaid($connect)
     {
         $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 1";
         return mysqli_fetch_assoc(mysqli_query($connect, $sql));
     }
 
-    function getOrderShip($connect)
+    function getOrderPaid($connect)
     {
         $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 2";
         return mysqli_fetch_assoc(mysqli_query($connect, $sql));
     }
 
-    function getOrderDone($connect)
+    function getOrderConfirm($connect)
     {
         $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 3";
         return mysqli_fetch_assoc(mysqli_query($connect, $sql));
     }
 
-    function getOrderCancel($connect)
+    function getOrderShip($connect)
     {
         $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 4";
         return mysqli_fetch_assoc(mysqli_query($connect, $sql));
     }
 
+    function getOrderDone($connect)
+    {
+        $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 5";
+        return mysqli_fetch_assoc(mysqli_query($connect, $sql));
+    }
+
+    function getOrderCancel($connect)
+    {
+        $sql = "SELECT COUNT(*) count_order FROM orders WHERE status = 6";
+        return mysqli_fetch_assoc(mysqli_query($connect, $sql));
+    }
+
+    function getTotalOrder($connect)
+    {
+        $sql = "SELECT COUNT(*) count_order FROM orders";
+        return mysqli_fetch_assoc(mysqli_query($connect, $sql));
+    }
+
     function getRevenueToday($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 3
+        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
         AND DATE_FORMAT(created_at, '%Y-%m-%d') = CURDATE()
         GROUP BY DATE_FORMAT(created_at,'%d/%m/%Y')";
         
@@ -194,7 +212,7 @@
 
     function getRevenueCurrentWeek($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 3 
+        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5 
         AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)
         GROUP BY MONTH(created_at), YEAR(created_at)";
         
@@ -203,7 +221,7 @@
 
     function getRevenueCurrentMonth($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 3
+        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
         AND MONTH(created_at) = MONTH(CURRENT_DATE()) AND YEAR(created_at) = YEAR(CURRENT_DATE())
         GROUP BY MONTH(created_at), YEAR(created_at)";
         
@@ -212,7 +230,7 @@
 
     function getRevenueCurrentYear($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 3
+        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
         AND YEAR(created_at) = YEAR(CURRENT_DATE())
         GROUP BY YEAR(created_at)";
         
@@ -222,7 +240,7 @@
     function getRevenueEachDay($connect)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 3";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
@@ -244,7 +262,7 @@
     function getRevenueByDate($connect, $date)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 3";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
@@ -266,7 +284,7 @@
     function getRevenueEachMonth($connect)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 3";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
@@ -288,7 +306,7 @@
     function getRevenueByMonthYear($connect, $month, $year)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 3";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
@@ -334,4 +352,44 @@
         }
 
         return $products;
+    }
+
+    function orderType($num)
+    {
+        $orderType = array(
+            '0' => 'Thanh toán khi nhận hàng',
+            '1' => 'Chuyển khoản qua ngân hàng',
+            '2' => 'Thanh toán qua VNPAY'
+        );
+
+        return $orderType[$num];
+    }
+
+    function statusType($num)
+    {
+        $orderType = array(
+            '0' => 'Chờ xác nhận',
+            '1' => 'Chưa thanh toán',
+            '2' => 'Đã thanh toán',
+            '3' => 'Đã xác nhận',
+            '4' => 'Đang giao hàng',
+            '5' => 'Hoàn thành',
+            '6' => 'Đã hủy',
+        );
+
+        return $orderType[$num];
+    }
+
+    function getOrdersDonut($connect)
+    {
+        $data = [];
+        $sql = "SELECT status, COUNT(*) AS count FROM orders GROUP BY status";
+        $result = mysqli_query($connect, $sql);
+        $data = array_fill(0, 7, 0);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[$row['status']] = $row['count'];
+        }
+
+        return json_encode($data);
     }

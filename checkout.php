@@ -51,6 +51,7 @@
                                 <option value="">Vui lòng chọn hình thức thanh toán</option>
                                 <option value="0">Thanh toán khi nhận hàng</option>
                                 <option value="1">Chuyển khoản qua ngân hàng</option>
+                                <option value="2">Thanh toán qua VNPAY</option>
                             </select>
                         </div>
                     </div>

@@ -31,7 +31,8 @@
         0
     );
     $address = $_POST['address'];
-    $sql = "INSERT INTO orders (id, user_id, total, address, name, tel, type) VALUES ('{$orderId}', {$userId}, {$total}, '{$address}', '{$name}', '{$tel}', '{$type}')";
+    $order_status = $type == 2 ? '-1' : '0';
+    $sql = "INSERT INTO orders (id, user_id, total, address, name, tel, type, status) VALUES ('{$orderId}', {$userId}, {$total}, '{$address}', '{$name}', '{$tel}', '{$type}', '{$order_status}')";
     $status = mysqli_query($connect, $sql);
     if ($status) {
         foreach ($_SESSION['shopping_cart'] as $row) {
@@ -46,10 +47,17 @@
             mysqli_query($connect, $sql);
         }
         unset($_SESSION['shopping_cart']);
+        if ($type == 0) {
+            header('Location: ../thank.php');
+            exit();
+        }
         if ($type == 1) {
             $_SESSION['order_id'] = $orderId;
             header('Location: ../qr-code.php');
-        } else {
-            header('Location: ../thank.php');
+            exit();
+        }
+        if ($type == 2) {
+            header('Location: ../vnpay/payment.php?order=' . $orderId . '&amount' . $total);
+            exit();
         }
     }

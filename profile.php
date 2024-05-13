@@ -4,11 +4,12 @@
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $sex = $_POST['sex'];
+        $gender = $_POST['gender'];
+        $birthday = $_POST['birthday'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
         $userId = $_SESSION['user']['id'];
-        $sql = "UPDATE users SET name = '{$name}', email = '{$email}', gender = '{$sex}', phone = '{$phone}', address = '{$address}' WHERE id = {$userId}";
+        $sql = "UPDATE users SET name = '{$name}', email = '{$email}', gender = '{$gender}', birthday = '{$birthday}', phone = '{$phone}', address = '{$address}' WHERE id = {$userId}";
         $status = mysqli_query($connect, $sql);
         if ($status) {
             $sql = "SELECT * FROM users WHERE id = {$userId} LIMIT 1";
@@ -55,10 +56,16 @@
             <div class="row justify-content-md-center">
                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px;">
                     <p>Giới tính <span class="text-danger">*</span></p>
-                    <select name="sex" class="form-control" style="height: 50px;border: 1px solid #ebebeb;" required>
+                    <select name="gender" class="form-control" style="height: 50px;border: 1px solid #ebebeb;" required>
                         <option value="0" <?= $_SESSION['user']['gender'] == 0 ? 'selected' : '' ?>>Nam</option>
                         <option value="1" <?= $_SESSION['user']['gender'] == 1 ? 'selected' : '' ?>>Nữ</option>
                     </select>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-lg-6 col-md-6">
+                    <p>Ngày sinh <span class="text-danger">*</span></p>
+                    <input type="date" style="margin-bottom: 10px;" name="birthday" max="<?= date('Y-m-d') ?>" value="<?= $_SESSION['user']['birthday'] ?>" required>
                 </div>
             </div>
             <div class="row justify-content-md-center">

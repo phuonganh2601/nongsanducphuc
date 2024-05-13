@@ -15,15 +15,16 @@
             </script>';
         } else {
             $name = $_POST['name'];
-            $sex = $_POST['sex'];
+            $gender = $_POST['gender'];
+            $birthday = $_POST['birthday'];
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $password = $_POST['password'];
             $repassword = $_POST['repassword'];
             if ($password == $repassword) {
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $sql = "INSERT INTO users(name, email, password, gender, phone, address) 
-                VALUES ('{$name}', '{$email}', '{$password}', {$sex}, '{$phone}', '{$address}')";
+                $sql = "INSERT INTO users(name, email, password, gender, birthday, phone, address) 
+                VALUES ('{$name}', '{$email}', '{$password}', {$gender}, '{$birthday}', '{$phone}', '{$address}')";
                 $status = mysqli_query($connect, $sql);
                 if ($status) {
                     echo '<script>
@@ -74,7 +75,7 @@
             </div>
             <div class="row justify-content-md-center">
                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px;">
-                    <select name="sex" class="form-control" style="height: 50px;border: 1px solid #ebebeb;" required>
+                    <select name="gender" class="form-control" style="height: 50px;border: 1px solid #ebebeb;" required>
                         <option value="0">Nam</option>
                         <option value="1">Nữ</option>
                     </select>

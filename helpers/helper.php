@@ -203,7 +203,7 @@
 
     function getRevenueToday($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
+        $sql = "SELECT SUM(total) total FROM orders WHERE status >= 2 AND status <= 5
         AND DATE_FORMAT(created_at, '%Y-%m-%d') = CURDATE()
         GROUP BY DATE_FORMAT(created_at,'%d/%m/%Y')";
         
@@ -212,7 +212,7 @@
 
     function getRevenueCurrentWeek($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5 
+        $sql = "SELECT SUM(total) total FROM orders WHERE status >= 2 AND status <= 5
         AND YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1)
         GROUP BY MONTH(created_at), YEAR(created_at)";
         
@@ -221,7 +221,7 @@
 
     function getRevenueCurrentMonth($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
+        $sql = "SELECT SUM(total) total FROM orders WHERE status >= 2 AND status <= 5
         AND MONTH(created_at) = MONTH(CURRENT_DATE()) AND YEAR(created_at) = YEAR(CURRENT_DATE())
         GROUP BY MONTH(created_at), YEAR(created_at)";
         
@@ -230,7 +230,7 @@
 
     function getRevenueCurrentYear($connect)
     {
-        $sql = "SELECT SUM(total) total FROM orders WHERE status = 5
+        $sql = "SELECT SUM(total) total FROM orders WHERE status >= 2 AND status <= 5
         AND YEAR(created_at) = YEAR(CURRENT_DATE())
         GROUP BY YEAR(created_at)";
         
@@ -240,18 +240,21 @@
     function getRevenueEachDay($connect)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status >= 2 AND a.status <= 5";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('Y-m-d', strtotime($row['created_at'])) == date('Y-m-d')) {
                 if (!isset($data[$product['name']])) {
-                    $data[$product['name']] = [
-                        'total' => $row['price']
+                    $data[$product['id']] = [
+                        'name' => $product['name'],
+                        'total' => $row['price'] * $row['qty'],
+                        'count' => $row['qty'],
                     ];
                 } else {
-                    $data[$product['name']]['total'] += $row['price'];
+                    $data[$product['id']]['total'] += $row['price'] * $row['qty'];
+                    $data[$product['id']]['count'] += $row['qty'];
                 }
             }
         }
@@ -262,18 +265,21 @@
     function getRevenueByDate($connect, $date)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status >= 2 AND a.status <= 5";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('Y-m-d', strtotime($row['created_at'])) == $date) {
                 if (!isset($data[$product['name']])) {
-                    $data[$product['name']] = [
-                        'total' => $row['price']
+                    $data[$product['id']] = [
+                        'name' => $product['name'],
+                        'total' => $row['price'] * $row['qty'],
+                        'count' => $row['qty'],
                     ];
                 } else {
-                    $data[$product['name']]['total'] += $row['price'];
+                    $data[$product['id']]['total'] += $row['price'] * $row['qty'];
+                    $data[$product['id']]['count'] += $row['qty'];
                 }
             }
         }
@@ -284,18 +290,21 @@
     function getRevenueEachMonth($connect)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status >= 2 AND a.status <= 5";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('m', strtotime($row['created_at'])) == date('m') && date('Y', strtotime($row['created_at'])) == date('Y')) {
                 if (!isset($data[$product['name']])) {
-                    $data[$product['name']] = [
-                        'total' => $row['price']
+                    $data[$product['id']] = [
+                        'name' => $product['name'],
+                        'total' => $row['price'] * $row['qty'],
+                        'count' => $row['qty'],
                     ];
                 } else {
-                    $data[$product['name']]['total'] += $row['price'];
+                    $data[$product['id']]['total'] += $row['price'] * $row['qty'];
+                    $data[$product['id']]['count'] += $row['qty'];
                 }
             }
         }
@@ -306,18 +315,21 @@
     function getRevenueByMonthYear($connect, $month, $year)
     {
         $data = [];
-        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status = 5 LIMIT 10";
+        $sql = "SELECT * FROM orders a, order_details b WHERE a.id = b.order_id AND a.status >= 2 AND a.status <= 5";
         $result = mysqli_query($connect, $sql);
         
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('m', strtotime($row['created_at'])) == $month && date('Y', strtotime($row['created_at'])) == $year) {
                 if (!isset($data[$product['name']])) {
-                    $data[$product['name']] = [
-                        'total' => $row['price']
+                    $data[$product['id']] = [
+                        'name' => $product['name'],
+                        'total' => $row['price'] * $row['qty'],
+                        'count' => $row['qty'],
                     ];
                 } else {
-                    $data[$product['name']]['total'] += $row['price'];
+                    $data[$product['id']]['total'] += $row['price'] * $row['qty'];
+                    $data[$product['id']]['count'] += $row['qty'];
                 }
             }
         }

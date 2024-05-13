@@ -34,7 +34,7 @@ $(document).ready(function() {
     "language": {
       url: '../../assets/admin/js/datatables.vi.json',
     },
-    order: [[4, 'desc']]
+    order: [[4, 'asc']]
   });
 
   $('#orderDetailTable').DataTable({

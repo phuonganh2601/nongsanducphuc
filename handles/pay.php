@@ -31,7 +31,7 @@
         0
     );
     $address = $_POST['address'];
-    $order_status = $type == 2 ? '-1' : '0';
+    $order_status = $type == 2 ? '1' : '0';
     $sql = "INSERT INTO orders (id, user_id, total, address, name, tel, type, status) VALUES ('{$orderId}', {$userId}, {$total}, '{$address}', '{$name}', '{$tel}', '{$type}', '{$order_status}')";
     $status = mysqli_query($connect, $sql);
     if ($status) {
@@ -57,7 +57,7 @@
             exit();
         }
         if ($type == 2) {
-            header('Location: ../vnpay/payment.php?order=' . $orderId . '&amount' . $total);
+            header('Location: ../vnpay/payment.php?order=' . $orderId);
             exit();
         }
     }

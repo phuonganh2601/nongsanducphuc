@@ -126,7 +126,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán chạy nhất ngày <?= $date ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán nhiều nhất ngày <?= $date ?></h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -141,7 +141,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán chạy nhất tháng <?= $month ?>/<?= $year ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Thống kê 10 sản phẩm bán nhiều nhất tháng <?= $month ?>/<?= $year ?></h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -180,39 +180,60 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="data1" value='<?= $revenueEachDay ?>' />
-<input type="hidden" id="data2" value='<?= $revenueEachMonth ?>' />
-<input type="hidden" id="data3" value='<?= $ordersDonut ?>' />
+<input type="hidden" id="dataEachDay" value='<?= $revenueEachDay ?>' />
+<input type="hidden" id="dataEachMonth" value='<?= $revenueEachMonth ?>' />
+<input type="hidden" id="dataOrders" value='<?= $ordersDonut ?>' />
 <!-- /.container-fluid -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
-    var jsonData1 = JSON.parse(document.getElementById("data1").value);
-    var labels = [];
-    var values = [];
-    for (var key in jsonData1) {
-        if (jsonData1.hasOwnProperty(key)) {
-            labels.push(key);
-            values.push(parseInt(jsonData1[key].total));
-        }
+    function parseJsonData(data) {
+        const dataArray = Object.entries(data);
+
+        dataArray.sort((a, b) => {
+            if (parseInt(a[1].count) !== parseInt(b[1].count)) {
+                return parseInt(b[1].count) - parseInt(a[1].count);
+            } else {
+                return b[1].total - a[1].total;
+            }
+        });
+
+        const top10Items = dataArray.slice(0, 10);
+
+        const labels = [];
+        const values = [];
+        const qty = [];
+
+        top10Items.forEach(item => {
+            labels.push(item[1].name);
+            values.push(item[1].total);
+            qty.push(parseInt(item[1].count));
+        });
+        return [labels, values, qty];
     }
 
-    var datasetDay = {
-        labels: labels,
-        datasets: [{
-            label: 'Tổng doanh thu theo ngày',
-            data: values,
-            borderWidth: 1
-        }]
-    };
+    let jsonData1 = JSON.parse(document.getElementById("dataEachDay").value);
+    let jsonData2 = JSON.parse(document.getElementById("dataEachMonth").value);
+    let jsonData3 = JSON.parse(document.getElementById("dataOrders").value);
 
-    var configDay = {
+    let dataEachDay = parseJsonData(jsonData1);
+    let dataEachMonth = parseJsonData(jsonData2);
+
+    let configDay = {
         type: 'bar',
-        data: datasetDay,
+        data: {
+            labels: dataEachDay[0],
+            datasets: [{
+                label: 'Tổng doanh thu theo ngày',
+                data: dataEachDay[1],
+                qty: dataEachDay[2],
+                borderWidth: 1
+            }],
+        },
         options: {
             scales: {
                 y: {
                     beginAtZero: true
-                }
+                },
             },
             plugins: {
                 tooltip: {
@@ -220,40 +241,25 @@
                         label: (item) => `Doanh thu: ${item.formattedValue} VND`,
                     },
                 },
-            }
+            },
         },
     }
-
-    const ctxDay = document.getElementById('revenueDayChart');
-    new Chart(ctxDay, configDay);
-    
-    var jsonData2 = JSON.parse(document.getElementById("data2").value);
-    var labels = [];
-    var values = [];
-    for (var key in jsonData2) {
-        if (jsonData2.hasOwnProperty(key)) {
-            labels.push(key);
-            values.push(parseInt(jsonData2[key].total));
-        }
-    }
-
-    var datasetMonth = {
-        labels: labels,
-        datasets: [{
-            label: 'Tổng doanh thu theo tháng',
-            data: values,
-            borderWidth: 1
-        }]
-    };
 
     var configMonth = {
         type: 'bar',
-        data: datasetMonth,
+        data: {
+            labels: dataEachMonth[0],
+            datasets: [{
+                label: 'Tổng doanh thu theo tháng',
+                data: dataEachMonth[1],
+                borderWidth: 1
+            }],
+        },
         options: {
             scales: {
                 y: {
                     beginAtZero: true
-                }
+                },
             },
             plugins: {
                 tooltip: {
@@ -261,14 +267,10 @@
                         label: (item) => `Doanh thu: ${item.formattedValue} VND`,
                     },
                 },
-            }
+            },
         },
     }
 
-    const ctxMonth = document.getElementById('revenueMonthChart');
-    new Chart(ctxMonth, configMonth);
-    
-    var jsonData3 = JSON.parse(document.getElementById("data3").value);
     const datasetOrders = {
         labels: ['Chờ xác nhận', 'Chưa thanh toán', 'Đã thanh toán', 'Đã xác nhận', 'Đang giao hàng', 'Hoàn thành', 'Đã hủy'],
         datasets: [{
@@ -299,6 +301,10 @@
         },
     };
 
+    const ctxDay = document.getElementById('revenueDayChart');
+    new Chart(ctxDay, configDay);
+    const ctxMonth = document.getElementById('revenueMonthChart');
+    new Chart(ctxMonth, configMonth);
     const ctxOrders = document.getElementById('ordersChart');
     new Chart(ctxOrders, configOrders);
 </script>

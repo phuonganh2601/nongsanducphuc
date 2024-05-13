@@ -9,7 +9,7 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
     <div class="container">
         <div class="row mb-2">
             <div class="col-lg-5 mb-2 mb-lg-0 text-lg-left text-center">
-                <a href="my-order.php" class="left-button primary-btn">
+                <a href="orders.php" class="left-button primary-btn">
                     <i class="fa fa-arrow-left"></i> Danh sách đơn hàng
                 </a>
             </div>
@@ -73,7 +73,7 @@ $orderDetails = getOrderDetail($connect, $_GET['id']);
                         foreach ($orderDetails as $orderDetail): ?>
                             <tr>
                                 <td><?= $count ?></td>
-                                <td><a href="product-detail.php?id=<?= $orderDetail['product_id'] ?>" style="color: #1c1c1c;"><?= $orderDetail['product']['name'] ?></a></td>
+                                <td><a href="product-details.php?id=<?= $orderDetail['product_id'] ?>" style="color: #1c1c1c;"><?= $orderDetail['product']['name'] ?></a></td>
                                 <td><?= $orderDetail['qty'] ?></td>
                                 <td><?= number_format($orderDetail['price'], -3, ',', '.') ?> VND</td>
                                 <td><?= number_format($orderDetail['price'] * $orderDetail['qty'], -3, ',', '.') ?> VND</td>

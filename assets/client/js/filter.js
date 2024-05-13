@@ -15,7 +15,7 @@ function filterProductByCategory(id) {
                         html += `<div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="../assets/admin/img/products/${product.image}">
-                                    <a href="product-detail.php?id=${product.id}" style="display: block; width: 100%; height: 100%;"></a>
+                                    <a href="product-details.php?id=${product.id}" style="display: block; width: 100%; height: 100%;"></a>
                                     <ul class="product__item__pic__hover">
                                     ${product.qty > 0 ?
                                         `<li><a href="javascript:void(0)" onclick="addToCart(${product.id});"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a></li>` :
@@ -24,7 +24,7 @@ function filterProductByCategory(id) {
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="product-detail.php?id=${product.id}">${product.name}</a></h6>
+                                    <h6><a href="product-details.php?id=${product.id}">${product.name}</a></h6>
                                     <h5 class="text-danger">${price} / ${product.unit}</h5>
                                 </div>
                             </div>

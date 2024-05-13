@@ -64,7 +64,7 @@
                     <span class="arrow_carrot-down"></span>
                     <ul>
                         <li><a href="change-password.php">Đổi mật khẩu</a></li>
-                        <li><a href="my-order.php">Đơn hàng của tôi</a></li>
+                        <li><a href="orders.php">Đơn hàng của tôi</a></li>
                         <li><a href="logout.php">Đăng xuất</a></li>
                     </ul>
                 </div>
@@ -107,7 +107,7 @@
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
                                         <li><a href="change-password.php">Đổi mật khẩu</a></li>
-                                        <li><a href="my-order.php">Đơn hàng của tôi</a></li>
+                                        <li><a href="orders.php">Đơn hàng của tôi</a></li>
                                         <li><a href="logout.php">Đăng xuất</a></li>
                                     </ul>
                                 </div>

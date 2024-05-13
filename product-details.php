@@ -16,7 +16,7 @@
         $status = mysqli_query($connect, $sql);
         if ($status) {
             echo '<script>
-                window.location.href = "product-detail.php?id=' . $product['id'] . '"
+                window.location.href = "product-details.php?id=' . $product['id'] . '"
             </script>';
         }
     }

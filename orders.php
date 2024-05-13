@@ -31,7 +31,7 @@
                                     <td><?= date('d/m/Y H:i:s', strtotime($order['created_at'])) ?></td>
                                     <td><?= statusType($order['status']) ?></td>
                                     <td>
-                                    <a href="show-my-order.php?id=<?= $order['id'] ?>" class="site-btn" style="text-align:center; padding: 5px 10px;">
+                                    <a href="order-details.php?id=<?= $order['id'] ?>" class="site-btn" style="text-align:center; padding: 5px 10px;">
                                             Chi tiết
                                         </a>
                                         <a href="print-invoice.php?id=<?= $order['id'] ?>" target="_blank" class="site-btn" style="text-align:center; padding: 5px 10px;">

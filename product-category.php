@@ -15,7 +15,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="assets/admin/img/products/<?= $product['image'] ?>">
-                                        <a href="product-detail.php?id=<?= $product['id'] ?>" style="display: block; width: 100%; height: 100%;"></a>
+                                        <a href="product-details.php?id=<?= $product['id'] ?>" style="display: block; width: 100%; height: 100%;"></a>
                                         <ul class="product__item__pic__hover">
                                             <li>
                                                 <?php if ($product['qty'] > 0): ?>
@@ -27,7 +27,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="product-detail.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h6>
+                                        <h6><a href="product-details.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h6>
                                         <h5 class="text-danger text-center"><?= number_format($product['price'],-3,',','.') ?> VND / <?= $product['unit'] ?></h5>
                                     </div>
                                 </div>

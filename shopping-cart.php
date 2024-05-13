@@ -24,7 +24,7 @@
                                 <?php foreach ($_SESSION['shopping_cart'] as $row): ?>
                                     <tr>
                                         <td class="shoping__cart__item">
-                                            <a href="product-detail.php?id=<?= $row['item_id'] ?>" style="color: #1c1c1c;"><img src="assets/admin/img/products/<?= $row['item_image'] ?>" alt="<?= $row['item_name'] ?>" width="100">
+                                            <a href="product-details.php?id=<?= $row['item_id'] ?>" style="color: #1c1c1c;"><img src="assets/admin/img/products/<?= $row['item_image'] ?>" alt="<?= $row['item_name'] ?>" width="100">
                                             <h5><?= $row['item_name'] ?></h5></a>
                                         </td>
                                         <td class="shoping__cart__price">

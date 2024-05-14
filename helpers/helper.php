@@ -246,7 +246,7 @@
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('Y-m-d', strtotime($row['created_at'])) == date('Y-m-d')) {
-                if (!isset($data[$product['name']])) {
+                if (!isset($data[$product['id']])) {
                     $data[$product['id']] = [
                         'name' => $product['name'],
                         'total' => $row['price'] * $row['qty'],
@@ -271,7 +271,7 @@
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('Y-m-d', strtotime($row['created_at'])) == $date) {
-                if (!isset($data[$product['name']])) {
+                if (!isset($data[$product['id']])) {
                     $data[$product['id']] = [
                         'name' => $product['name'],
                         'total' => $row['price'] * $row['qty'],
@@ -296,7 +296,7 @@
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('m', strtotime($row['created_at'])) == date('m') && date('Y', strtotime($row['created_at'])) == date('Y')) {
-                if (!isset($data[$product['name']])) {
+                if (!isset($data[$product['id']])) {
                     $data[$product['id']] = [
                         'name' => $product['name'],
                         'total' => $row['price'] * $row['qty'],
@@ -321,7 +321,7 @@
         while($row = mysqli_fetch_assoc($result)) {
             $product = getProductById($connect, $row['product_id']);
             if (date('m', strtotime($row['created_at'])) == $month && date('Y', strtotime($row['created_at'])) == $year) {
-                if (!isset($data[$product['name']])) {
+                if (!isset($data[$product['id']])) {
                     $data[$product['id']] = [
                         'name' => $product['name'],
                         'total' => $row['price'] * $row['qty'],

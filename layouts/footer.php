@@ -109,7 +109,8 @@ Copyright © <script>document.write(new Date().getFullYear());</script> | Bản 
             $("#orderDetailTable").DataTable({
                 "language": {
                     url: 'assets/client/js/datatables.vi.json',
-                }
+                },
+                order: []
             });
 
             paginationProduct();

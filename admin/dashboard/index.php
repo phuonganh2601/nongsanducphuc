@@ -223,22 +223,56 @@
         data: {
             labels: dataEachDay[0],
             datasets: [{
-                label: 'Tổng doanh thu theo ngày',
+                label: 'Doanh thu theo ngày',
                 data: dataEachDay[1],
-                qty: dataEachDay[2],
-                borderWidth: 1
+                borderWidth: 1,
+                yAxisID: 'y',
+                order: 1,
+            },
+            {
+                label: 'Số lượng bán ra',
+                data: dataEachDay[2],
+                type: 'line',
+                yAxisID: 'y1',
+                order: 0,
             }],
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Doanh thu',
+                    },
+                },
+                y1: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Số lượng',
+                    },
                 },
             },
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: (item) => `Doanh thu: ${item.formattedValue} VND`,
+                        label: (item) => {
+                            if (item.datasetIndex === 0) {
+                                return `Doanh thu: ${item.formattedValue} VND`;
+                            } else if (item.datasetIndex === 1) {
+                                return `Số lượng: ${item.formattedValue}`;
+                            }
+                            return item.formattedValue;
+                        },
                     },
                 },
             },
@@ -250,21 +284,56 @@
         data: {
             labels: dataEachMonth[0],
             datasets: [{
-                label: 'Tổng doanh thu theo tháng',
+                label: 'Doanh thu theo tháng',
                 data: dataEachMonth[1],
-                borderWidth: 1
+                borderWidth: 1,
+                yAxisID: 'y',
+                order: 1,
+            },
+            {
+                label: 'Số lượng bán ra',
+                data: dataEachMonth[2],
+                type: 'line',
+                yAxisID: 'y1',
+                order: 0,
             }],
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Doanh thu',
+                    },
+                },
+                y1: {
+                    beginAtZero: true,
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Số lượng',
+                    },
                 },
             },
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: (item) => `Doanh thu: ${item.formattedValue} VND`,
+                        label: (item) => {
+                            if (item.datasetIndex === 0) {
+                                return `Doanh thu: ${item.formattedValue} VND`;
+                            } else if (item.datasetIndex === 1) {
+                                return `Số lượng: ${item.formattedValue}`;
+                            }
+                            return item.formattedValue;
+                        },
                     },
                 },
             },
